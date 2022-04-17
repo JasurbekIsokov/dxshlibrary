@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <!-- META ============================================= -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="robots" content="" />
+
+    <!-- DESCRIPTION -->
+    <meta name="description" content="EduChamp : Education HTML Template" />
+
+    <!-- OG -->
+    <meta property="og:title" content="EduChamp : Education HTML Template" />
+    <meta
+      property="og:description"
+      content="EduChamp : Education HTML Template"
+    />
+    <meta property="og:image" content="" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- FAVICONS ICON ============================================= -->
+    <link rel="icon" href={% static 'images/favicon.ico' %} type="image/x-icon"
+    /> <link rel="shortcut icon" type="image/x-icon" href={% static 'images/favicon.png' %} />
+
+    <!-- PAGE TITLE HERE ============================================= -->
+    <title>EduChamp : Education HTML Template</title>
+
+    <!-- MOBILE SPECIFIC ============================================= -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.min.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- All PLUGINS CSS ============================================= -->
+    <link rel="stylesheet" type="text/css" href={% static 'css/assets.css' %} />
+
+    <!-- TYPOGRAPHY ============================================= -->
+    <link rel="stylesheet" type="text/css" href={% static 'css/typography.css' %} />
+
+    <!-- SHORTCODES ============================================= -->
+    <link rel="stylesheet" type="text/css" href={% static 'css/shortcodes/shortcodes.css' %} />
+
+    <!-- STYLESHEETS ============================================= -->
+    <link rel="stylesheet" type="text/css" href={% static 'css/style.css' %} />
+    <link class="skin" rel="stylesheet" type="text/css" href={% static 'css/color/color-1.css' %} />
+  </head>
+  <body id="bg">
+    <div class="page-wraper">
+      <div id="loading-icon-bx"></div>
+      <div class="account-form">
+        <div
+          class="account-head"
+          style="background-image: url({% static 'images/banner/back1.jpg'%})"
+        ></div>
+        <div class="account-form-inner">
+          <div class="account-container">
+            <div class="heading-bx left">
+              <h2 class="title-head">Tizimga kirish<span></span></h2>
+              <p>
+                Menda akkount yo'q
+                <a href="#!"> Akkount yaratish</a><br>
+                <a href="{% url 'library:register' %}">(Kutubxona)</a>
+                <a href="{% url 'organization:register' %}">(Tashkilot)</a>
+              </p>
+            </div>
+            {{message}}
+            <form class="contact-bx" method="post">
+              {% csrf_token %}
+              <div class="row placeani">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <label>Foydalanuvchi Nomi</label>
+                      <input
+                        name="username"
+                        type="text"
+                        required=""
+                        class="form-control"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <label>Foydalanuvchi Paroli</label>
+                      <input
+                        name="password"
+                        type="password"
+                        class="form-control"
+                        required=""
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-12 m-b30">
+                  <button
+                    name="submit"
+                    type="submit"
+                    value="Submit"
+                    class="btn button-md"
+                  >
+                    Login
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- External JavaScripts -->
+    <script src={% static 'js/jquery.min.js' %}></script>
+    <script src={% static 'vendors/bootstrap/js/popper.min.js' %}></script>
+    <script src={% static 'vendors/bootstrap/js/bootstrap.min.js' %}></script>
+    <script src={% static 'vendors/bootstrap-select/bootstrap-select.min.js' %}></script>
+    <script src={% static 'vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js' %}></script>
+    <script src={% static 'vendors/magnific-popup/magnific-popup.js' %}></script>
+    <script src={% static 'vendors/counter/waypoints-min.js' %}></script>
+    <script src={% static 'vendors/counter/counterup.min.js' %}></script>
+    <script src={% static 'vendors/imagesloaded/imagesloaded.js' %}></script>
+    <script src={% static 'vendors/masonry/masonry.js' %}></script>
+    <script src={% static 'vendors/masonry/filter.js' %}></script>
+    <script src={% static 'vendors/owl-carousel/owl.carousel.js' %}></script>
+    <script src={% static 'js/functions.js' %}></script>
+    <script src={% static 'js/contact.js' %}></script>
+    <script src={% static 'vendors/switcher/switcher.js' %}></script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<div class="page-content bg-white">
+  <!-- Page Heading Box ==== -->
+  <div
+    class="page-banner ovbl-dark"
+    style="background-image: url('{% static 'images/banner/banner1.jpg' %}')"
+  >
+    <div class="container">
+      <div class="page-banner-entry">
+        <h1 class="text-white">Barcha kutubxonalar</h1>
+      </div>
+    </div>
+  </div>
+  <div class="breadcrumb-row">
+    <div class="container">
+      <ul class="list-inline">
+        <li><a href="{% url 'home' %}">Asosiy</a></li>
+        <li>Kutubxonalar</li>
+      </ul>
+    </div>
+  </div>
+  <!-- Page Heading Box END ==== -->
+  <!-- Page Content Box ==== -->
+  <div class="content-block">
+    <!-- Blog Grid ==== -->
+    <div class="section-area section-sp1">
+      <div class="container">
+        <div class="ttr-blog-grid-3 row" id="masonry">
+          {% for library in libraries %}
+          <div
+            class="post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40"
+          >
+            <div class="recent-news">
+              {% if library.library_pic %}
+              <div class="action-box">
+                <img src="{{library.library_pic.url}}" alt="" />
+              </div>
+              {% endif %}
+
+              <div class="info-bx">
+                <h5 class="post-title">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  <a href="blog-details.html">{{library.full_name}}</a>
+                </h5>
+                <p>
+                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  {{library.region}}<br />{{library.full_address}}
+                </p>
+                <p class="badge badge-warning" style="color: white">
+                  #{{library.partnership_type}}
+                </p>
+                <p>
+                  <i class="fa fa-paper-plane" aria-hidden="true"></i> Qo'llab
+                  quvvatlash:
+                </p>
+                <p style="font-size: 20px">
+                  <a href="#!" class="badge badge-success">Hamkorlik</a>
+                  <a href="#!" class="badge badge-success">Be'garaz yordam</a>
+                  <a href="#!" class="badge badge-success">Homiylik</a>
+                </p>
+                <div class="post-extra">
+                  <a href="{% url 'library:profile' %}" class="btn"
+                    >Ko'proq ko'rish</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!-- Blog Grid END ==== -->
+  </div>
+  <!-- Page Content Box END ==== -->
+</div>
+{% endblock content %}
