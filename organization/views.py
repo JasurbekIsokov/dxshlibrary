@@ -1,27 +1,24 @@
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.models import User
 from .models import Organization
-from main_app.models import New
+from main_app.models import New, Contract
 from library.models import Library
 
 # Create your views here.
-    
+
 def profile_organization(request, pk=None):
-    print(pk)
-    libraries = Library.objects.all()
-    organizations = Organization.objects.all()
-    organization = {}
-    for o in organizations:
-        if pk == o.id:
-            organization = o
+    organization = Organization.objects.get(id=pk)
+    contracts = Contract.objects.filter(organization=organization)
     news = New.objects.all()
     news = news.reverse()
+    
     context = {
-        'organization':o,
+        'organization': organization,
         'news': news,
-        'libraries': libraries
+        'contracts': contracts
     }
     return render(request, 'organization/organization_profile.html',context) 
 

@@ -149,7 +149,7 @@
                     {% if user.library %}
                     <div class="dropdown">
                       <button onclick="myFunction()" class="dropbtn" style="color:yellow; font-size:16px">
-                        {{user.library.full_name}}
+                        <i class="fa fa-book" aria-hidden="true"></i> {{user.library.full_name}}
                       </button>
                       <div id="myDropdown" class="dropdown-content">
                         <a href="{% url 'library:profile' pk=user.library.id%}">Shahsiy kabinet</a>
@@ -159,7 +159,7 @@
                     {% else %}
                     <div class="dropdown">
                       <button onclick="myFunction()" class="dropbtn" style="color:yellow; font-size:16px">
-                        {{user.organization.full_name}}
+                        <i class="fa fa-building" aria-hidden="true"></i> {{user.organization.full_name}}
                       </button>
                       <div id="myDropdown" class="dropdown-content">
                         <a href="{% url 'organization:profile' pk=user.organization.id %}">Shahsiy kabinet</a>

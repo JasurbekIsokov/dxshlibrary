@@ -34,34 +34,26 @@ def profile(request, pk):
             app_file = app_file,
         )
 
-        libraries = Library.objects.all()
-        organizations = Organization.objects.all()
-        library = {}
-        for l in libraries:
-            if pk == l.id:
-                library = l
+        library = Library.objects.get(id=pk)
         news = New.objects.all()
         news = news.reverse()
+        contracts = Contract.objects.filter(library=library)
         context = {
-            'library':l,
+            'library':library,
             'news': news,
-            'organizations': organizations
+            'contracts': contracts
         }
 
         return render(request, 'library/library_profile.html',context)
-
-    libraries = Library.objects.all()
-    organizations = Organization.objects.all()
-    library = {}
-    for l in libraries:
-        if pk == l.id:
-            library = l
+   
+    library = Library.objects.get(id=pk)
     news = New.objects.all()
     news = news.reverse()
+    contracts = Contract.objects.filter(library=library)
     context = {
-        'library':l,
+        'library':library,
         'news': news,
-        'organizations': organizations
+        'contracts': contracts
     }
     return render(request, 'library/library_profile.html',context) 
 

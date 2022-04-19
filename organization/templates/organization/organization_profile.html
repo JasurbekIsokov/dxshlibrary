@@ -55,7 +55,9 @@
                             <i class="fa fa-phone" aria-hidden="true"></i>
                             {{organization.phone}}
                           </p>
-                          <p>Ko'rxona turi: {{organization.type}}</p>
+                          <p>
+                            Ko'rxona turi: {{organization.organization_type}}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -67,71 +69,47 @@
                   <h5 class="post-title alert alert-info text-center">
                     Arizalaringiz
                   </h5>
-                  {% for organization in organizations %}
+                  {% for contract in contracts %}
                   <div class="card mb-3 shadow-sm">
-                    <img
-                      src="{{organization.organization_pic.url}}"
-                      class="card-img-top"
-                      alt="..."
-                      style="height: 200px; object-fit: cover"
-                    />
                     <div class="card-body">
-                      <h5 class="card-title">
-                        <i class="fa fa-building" aria-hidden="true"></i>
-                        {{organization.full_name}}
+                      <h5 class="post-title">
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                        <a href="#!">{{contract.library.full_name}}.</a>
                       </h5>
-                      <p class="card-text">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        {{organization.region}} viloyati
-                        {{organization.full_address}}
-                      </p>
-                      <p>Holat:</p>
+                      <div class="media-post">
+                        <a href="#!"
+                          ><i class="fa fa-calendar"></i> Ariza Topshirilgan
+                          vaqt: {{contract.date_added}}</a
+                        >
+                      </div>
+
+                      <img
+                        src="{{contract.library.library_pic.url}}"
+                        class="card-img-top"
+                        alt="..."
+                        style="height: 200px; object-fit: cover"
+                      />
+                      <div style="margin-top: 12px"></div>
+                      {% if contract.state == "Kutilmoqda" %}
                       <p class="alert alert-warning">
-                        <i class="fa fa-question" aria-hidden="true"></i> Ko'rib
-                        chiqilmoqda...
+                        <i class="fa fa-question" aria-hidden="true"></i>
+                        {{contract.state}}...
                       </p>
+                      {% elif contract.state == "Qabul qilindi" %}
+
                       <p class="alert alert-success">
-                        <a href="#!" class=""
-                          ><i class="fa fa-check" aria-hidden="true"></i>Qabul
-                          qilindi. (Arizani yuklash)
+                        <a href="{{contract.app_file.url}}" target="bank"
+                          ><i class="fa fa-check" aria-hidden="true"></i>
+                          Qabul qilindi. (Arizani yuklash)
                           <i class="fa fa-download" aria-hidden="true"></i
                         ></a>
                       </p>
+                      {% elif contract.state == "Bekor qilindi" %}
                       <p class="alert alert-danger">
                         <i class="fa fa-ban" aria-hidden="true"></i>Bekor
                         qilindi.
                       </p>
-                    </div>
-                  </div>
-                  {% endfor %}
-                </div>
-                <div>
-                  <h5 class="post-title alert alert-info text-center">
-                    Arizalaringiz
-                  </h5>
-                  {% for organization in organizations %}
-                  <div class="card mb-3 shadow-sm">
-                    <div class="card-body">
-                      <h5 class="card-title">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        Yuborilgan vaqt:
-                      </h5>
-                      <p>Holat:</p>
-                      <p class="alert alert-warning">
-                        <i class="fa fa-question" aria-hidden="true"></i> Ko'rib
-                        chiqilmoqda...
-                      </p>
-                      <p class="alert alert-success">
-                        <a href="#!" class=""
-                          ><i class="fa fa-check" aria-hidden="true"></i>Qabul
-                          qilindi. (Arizani yuklash)
-                          <i class="fa fa-download" aria-hidden="true"></i
-                        ></a>
-                      </p>
-                      <p class="alert alert-danger">
-                        <i class="fa fa-ban" aria-hidden="true"></i>Bekor
-                        qilindi.
-                      </p>
+                      {% endif %}
                     </div>
                   </div>
                   {% endfor %}

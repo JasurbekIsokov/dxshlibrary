@@ -65,6 +65,8 @@
                           </div>
                         </div>
                       </div>
+                      <!--Ariza yuborish faqat tashkilot uchun-->
+                      {% if user.organization %}
                       <div class="col-lg-6">
                         <div class="info-bx">
                           <h5 class="post-title">
@@ -119,7 +121,7 @@
                                 required
                               />
                               <label class="custom-file-label" for="customFile"
-                                >Ariza yuborish</label
+                                >Faylni tanlang</label
                               >
                             </div>
                             <div class="form-check">
@@ -150,84 +152,115 @@
                           </form>
                         </div>
                       </div>
+                      {% endif %}
                     </div>
                   </div>
                 </div>
               </div>
               <div style="margin-bottom: 20px">
+                <!--Kutubxonaga kelgan zarizalar-->
+                {% if user.is_authenticated and user.library %}
                 <div>
                   <h5 class="post-title alert alert-info text-center">
                     Takliflar
                   </h5>
-                  {% for organization in organizations %}
+                  {% if contracts %}{% for contract in contracts %}
                   <div class="card mb-3 shadow-sm">
-                    <img
-                      src="{{organization.organization_pic.url}}"
-                      class="card-img-top"
-                      alt="..."
-                      style="height: 200px; object-fit: cover"
-                    />
                     <div class="card-body">
-                      <h5 class="card-title">
+                      <h5 class="post-title">
                         <i class="fa fa-building" aria-hidden="true"></i>
-                        {{organization.full_name}}
+                        <a href="#!">{{contract.organization.full_name}}.</a>
                       </h5>
-                      <p class="card-text">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        {{organization.region}} viloyati
-                        {{organization.full_address}}
-                      </p>
-                      <p>Holat:</p>
+                      <div class="media-post">
+                        <a href="#!"
+                          ><i class="fa fa-calendar"></i> Ariza Topshirilgan
+                          vaqt: {{contract.date_added}}</a
+                        >
+                      </div>
+
+                      <img
+                        src="{{contract.organization.organization_pic.url}}"
+                        class="card-img-top"
+                        alt="..."
+                        style="height: 200px; object-fit: cover"
+                      />
+                      <div style="margin-top: 12px"></div>
+                      {% if contract.state == "Kutilmoqda" %}
                       <p class="alert alert-warning">
-                        <i class="fa fa-question" aria-hidden="true"></i> Ko'rib
-                        chiqilmoqda...
+                        <i class="fa fa-question" aria-hidden="true"></i>
+                        {{contract.state}}...
                       </p>
+                      {% elif contract.state == "Qabul qilindi" %}
+
                       <p class="alert alert-success">
-                        <a href="#!" class=""
-                          ><i class="fa fa-check" aria-hidden="true"></i>Qabul
-                          qilindi. (Arizani yuklash)
+                        <a href="{{contract.app_file.url}}" target="bank"
+                          ><i class="fa fa-check" aria-hidden="true"></i>
+                          Qabul qilindi. (Arizani yuklash)
                           <i class="fa fa-download" aria-hidden="true"></i
                         ></a>
                       </p>
+                      {% elif contract.state == "Bekor qilindi" %}
                       <p class="alert alert-danger">
                         <i class="fa fa-ban" aria-hidden="true"></i>Bekor
                         qilindi.
                       </p>
+                      {% endif %}
                     </div>
                   </div>
-                  {% endfor %}
+                  {% endfor %} {% else %}
+                  <div class="mb-3">
+                    <p href="#!" class="alert alert-warning text-center">
+                      Arizalar mavjud emas
+                    </p>
+                  </div>
+                  {% endif %}
+
+                  <!--Arizlar tugadi-->
                 </div>
+                {% endif %}
+
+                <!--Faqat tashkilotlar uchun ko'rinadigan qism-->
+                {% if user.organization and user.is_authenticated %}
                 <div>
                   <h5 class="post-title alert alert-info text-center">
                     Arizalaringiz
                   </h5>
-                  {% for organization in organizations %}
+                  {% for contract in contracts %}
+                  <!--Faqat joriy tashkilotga tekgishli arizalar-->
+                  {% if contract.organization == user.organization %}
                   <div class="card mb-3 shadow-sm">
                     <div class="card-body">
                       <h5 class="card-title">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
-                        Yuborilgan vaqt:
+                        Yuborilgan vaqt: {{contract.date_added}}
                       </h5>
-                      <p>Holat:</p>
+                      <div style="margin-top: 12px"></div>
+                      {% if contract.state == "Kutilmoqda" %}
                       <p class="alert alert-warning">
-                        <i class="fa fa-question" aria-hidden="true"></i> Ko'rib
-                        chiqilmoqda...
+                        <i class="fa fa-question" aria-hidden="true"></i>
+                        {{contract.state}}...
                       </p>
+                      {% elif contract.state == "Qabul qilindi" %}
+
                       <p class="alert alert-success">
-                        <a href="#!" class=""
-                          ><i class="fa fa-check" aria-hidden="true"></i>Qabul
-                          qilindi. (Arizani yuklash)
+                        <a href="{{contract.app_file.url}}" target="bank"
+                          ><i class="fa fa-check" aria-hidden="true"></i>
+                          Qabul qilindi. (Arizani yuklash)
                           <i class="fa fa-download" aria-hidden="true"></i
                         ></a>
                       </p>
+                      {% elif contract.state == "Bekor qilindi" %}
                       <p class="alert alert-danger">
                         <i class="fa fa-ban" aria-hidden="true"></i>Bekor
                         qilindi.
                       </p>
+                      {% endif %}
+                    </div>
                     </div>
                   </div>
-                  {% endfor %}
+                  {% endif %} {% endfor %}
                 </div>
+                {% endif %}
               </div>
             </div>
 
