@@ -1,0 +1,285 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<div class="page-content bg-white">
+  <!-- inner page banner -->
+  <div
+    class="page-banner ovbl-dark"
+    style="background-image: url('{% static 'images/banner/banner2.jpg'%}')"
+  >
+    <div class="container">
+      <div class="page-banner-entry">
+        <h1 class="text-white">{{library.full_name}}</h1>
+        <p class="text-white">Profil sahifasi</p>
+      </div>
+    </div>
+  </div>
+  <!-- Breadcrumb row -->
+  <div class="breadcrumb-row">
+    <div class="container">
+      <ul class="list-inline">
+        <li><a href="{% url 'home' %}">Asosiy</a></li>
+        <li>Shaxsiy sahifa</li>
+      </ul>
+    </div>
+  </div>
+  <!-- Breadcrumb row END -->
+  <div class="content-block">
+    <div class="section-area section-sp1">
+      <div class="container">
+        <div class="row">
+          <!-- Left part start -->
+          <div class="col-lg-8 col-xl-8">
+            <!-- blog start -->
+            <div class="recent-news blog-lg">
+              <div class="action-box blog-lg">
+                <div class="card mb-3 shadow-sm">
+                  <img
+                    src="{{library.library_pic.url}}"
+                    class="card-img-top"
+                    alt="..."
+                  />
+                  <div class="card-body">
+                    <div class="row p-2" style="margin-bottom: 20px">
+                      <div class="col-lg-6">
+                        <div class="info-bx">
+                          <h5 class="post-title">
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            <a href="#!">{{library.full_name}}.</a>
+                          </h5>
+                          <p>
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            {{library.region}} {{library.full_address}}
+                          </p>
+                          <p class="badge badge-warning" style="color: white">
+                            #{{library.partnership_type}}
+                          </p>
+                          <p>
+                            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                            Qo'llab quvvatlash:
+                          </p>
+                          <p>
+                            Ushbu kutubxona bilan hamkorlik qilish uchun<br />o'z
+                            arizangizni yuboring
+                          </p>
+                          <div class="ttr-divider bg-gray">
+                            <i class="icon-dot c-square"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="info-bx">
+                          <h5 class="post-title">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <a href="#!">Ariza yuborish</a>
+                          </h5>
+                          <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div style="margin: 15px 0">
+                              <div class="form-check m-10">
+                                <label class="form-check-label alert-warning">
+                                  <input
+                                    type="radio"
+                                    class="form-check-input"
+                                    name="help"
+                                    value="Hamkorlik"
+                                    required
+                                  />Hamkorlik
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <label class="form-check-label alert-info">
+                                  <input
+                                    type="radio"
+                                    class="form-check-input"
+                                    name="help"
+                                    value="Homiylik"
+                                    required
+                                  />Homiylik
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <label class="form-check-label alert-success">
+                                  <input
+                                    type="radio"
+                                    class="form-check-input"
+                                    name="help"
+                                    value="Beg'araz yordam"
+                                    required
+                                  />Beg'araz yordam
+                                </label>
+                              </div>
+                            </div>
+                            <div class="custom-file">
+                              <input
+                                name="app"
+                                type="file"
+                                accept="application/pdf,application/msword,
+                                application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                class="custom-file-input"
+                                id="customFile"
+                                required
+                              />
+                              <label class="custom-file-label" for="customFile"
+                                >Ariza yuborish</label
+                              >
+                            </div>
+                            <div class="form-check">
+                              <input
+                                style="display: none"
+                                type="text"
+                                class="form-check-input"
+                                name="library_id"
+                                value="{{library.id}}"
+                              />
+                            </div>
+                            <div class="form-check">
+                              <input
+                                style="display: none"
+                                type="text"
+                                class="form-check-input"
+                                name="organization_id"
+                                value="{{user.organization.id}}"
+                              />
+                            </div>
+                            <button
+                              type="submit"
+                              class="btn"
+                              style="margin-top: 10px"
+                            >
+                              Yuborish
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-bottom: 20px">
+                <div>
+                  <h5 class="post-title alert alert-info text-center">
+                    Takliflar
+                  </h5>
+                  {% for organization in organizations %}
+                  <div class="card mb-3 shadow-sm">
+                    <img
+                      src="{{organization.organization_pic.url}}"
+                      class="card-img-top"
+                      alt="..."
+                      style="height: 200px; object-fit: cover"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <i class="fa fa-building" aria-hidden="true"></i>
+                        {{organization.full_name}}
+                      </h5>
+                      <p class="card-text">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        {{organization.region}} viloyati
+                        {{organization.full_address}}
+                      </p>
+                      <p>Holat:</p>
+                      <p class="alert alert-warning">
+                        <i class="fa fa-question" aria-hidden="true"></i> Ko'rib
+                        chiqilmoqda...
+                      </p>
+                      <p class="alert alert-success">
+                        <a href="#!" class=""
+                          ><i class="fa fa-check" aria-hidden="true"></i>Qabul
+                          qilindi. (Arizani yuklash)
+                          <i class="fa fa-download" aria-hidden="true"></i
+                        ></a>
+                      </p>
+                      <p class="alert alert-danger">
+                        <i class="fa fa-ban" aria-hidden="true"></i>Bekor
+                        qilindi.
+                      </p>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+                <div>
+                  <h5 class="post-title alert alert-info text-center">
+                    Arizalaringiz
+                  </h5>
+                  {% for organization in organizations %}
+                  <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        Yuborilgan vaqt:
+                      </h5>
+                      <p>Holat:</p>
+                      <p class="alert alert-warning">
+                        <i class="fa fa-question" aria-hidden="true"></i> Ko'rib
+                        chiqilmoqda...
+                      </p>
+                      <p class="alert alert-success">
+                        <a href="#!" class=""
+                          ><i class="fa fa-check" aria-hidden="true"></i>Qabul
+                          qilindi. (Arizani yuklash)
+                          <i class="fa fa-download" aria-hidden="true"></i
+                        ></a>
+                      </p>
+                      <p class="alert alert-danger">
+                        <i class="fa fa-ban" aria-hidden="true"></i>Bekor
+                        qilindi.
+                      </p>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+
+            <!-- blog END -->
+          </div>
+          <!-- Left part END -->
+          <!-- Side bar start -->
+          <div class="col-lg-4 col-xl-4">
+            <aside class="side-bar sticky-top">
+              <div class="widget recent-posts-entry">
+                <h6 class="widget-title">So'ngi yangiliklar</h6>
+                <div class="widget-post-bx">
+                  {% if news %} {% for new in news %}
+                  <div class="widget-post clearfix">
+                    <div class="ttr-post-media">
+                      <img
+                        src="{{new.news_pic.url}}"
+                        width="200"
+                        height="143"
+                        alt=""
+                      />
+                    </div>
+                    <div class="ttr-post-info">
+                      <div class="ttr-post-header">
+                        <h6 class="post-title">
+                          <a href="{% url 'simple_new' pk=new.id %}"
+                            >{{new.title}}.</a
+                          >
+                        </h6>
+                      </div>
+                      <ul class="media-post">
+                        <li>
+                          <a href="{% url 'simple_new' pk=new.id %}"
+                            ><i class="fa fa-calendar"></i>{{new.date_added}}</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  {% endfor %} {% else %}
+                  <div class="alert alert-warning">
+                    Yangiliklar mavjud emas.
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </aside>
+          </div>
+          <!-- Side bar END -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -3,6 +3,6 @@ from .views import *
 
 app_name = 'organization'
 urlpatterns = [
-    path("profile/", profile, name='profile'),
+    path("profile/<str:pk>/", profile_organization, name='profile'),
     path("register/", register, name='register'),
 ]

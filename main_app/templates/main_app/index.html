@@ -152,7 +152,7 @@
                         {{user.library.full_name}}
                       </button>
                       <div id="myDropdown" class="dropdown-content">
-                        <a href="{% url 'library:profile' %}">Shahsiy kabinet</a>
+                        <a href="{% url 'library:profile' pk=user.library.id%}">Shahsiy kabinet</a>
                         <a href="{% url 'logout' %}">Tizimdan chiqish</a>
                       </div>
                     </div>
@@ -162,7 +162,7 @@
                         {{user.organization.full_name}}
                       </button>
                       <div id="myDropdown" class="dropdown-content">
-                        <a href="{% url 'organization:profile' %}">Shahsiy kabinet</a>
+                        <a href="{% url 'organization:profile' pk=user.organization.id %}">Shahsiy kabinet</a>
                         <a href="{% url 'logout' %}">Tizimdan chiqish</a>
                       </div>
                     </div>
@@ -943,7 +943,13 @@
                       <h5 class="footer-title">Havolalar</h5>
                       <ul>
                         <li><a href="{% url 'news' %}">Yangiliklar</a></li>
-                        <li><a href="{% url 'library:profile' %}">Shahsiy kabinet</a></li>
+                        {% if user.is_authenticated %}
+                          {% if  user.library%}
+                            <li><a href="{% url 'library:profile' pk=user.library.id %}">Shahsiy kabinet</a></li>
+                          {% elif user.organization %}
+                            <li><a href="{% url 'organization:profile' pk=user.organization.id %}">Shahsiy kabinet</a></li>
+                          {% endif %}
+                        {% endif %}
                       </ul>
                     </div>
                   </div>

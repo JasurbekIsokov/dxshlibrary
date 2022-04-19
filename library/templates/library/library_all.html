@@ -59,7 +59,9 @@
                   <a href="#!" class="badge badge-success">Homiylik</a>
                 </p>
                 <div class="post-extra">
-                  <a href="{% url 'library:profile' %}" class="btn"
+                  <a
+                    href="{% url 'library:profile' pk=library.id %}"
+                    class="btn"
                     >Ko'proq ko'rish</a
                   >
                 </div>

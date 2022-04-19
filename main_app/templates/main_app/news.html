@@ -20,7 +20,7 @@
 <div class="section-area section-sp1">
   <div class="container">
     <div class="ttr-blog-grid-3 row" id="masonry">
-      {% for new in news %}
+      {% if news %} {% for new in news %}
       <div class="post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40">
         <div class="recent-news">
           <div class="action-box">
@@ -44,7 +44,9 @@
           </div>
         </div>
       </div>
-      {% endfor %}
+      {% endfor %} {% else %}
+      <div class="alert alert-warning">Yangiliklar mavjuda emas.</div>
+      {% endif %}
     </div>
   </div>
 </div>

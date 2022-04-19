@@ -115,9 +115,31 @@
               </div>
               <div class="topbar-right">
                 <ul>
-                  <li><a href="{% url 'library:profile' %}">Shahsiy kabinet</a></li>
+                  {% if user.is_authenticated and not user.is_superuser %}
+                    {% if user.library %}
+                    <div class="dropdown">
+                      <button onclick="myFunction()" class="dropbtn" style="color:blue; font-size:16px">
+                        {{user.library.full_name}}
+                      </button>
+                      <div id="myDropdown" class="dropdown-content">
+                        <a href="{% url 'library:profile' pk=user.library.id %}" style="color:black">Shahsiy kabinet</a>
+                        <a href="{% url 'logout' %}">Tizimdan chiqish</a>
+                      </div>
+                    </div>
+                    {% else %}
+                    <div class="dropdown">
+                      <button onclick="myFunction()" class="dropbtn" style="color:yellow; font-size:16px">
+                        {{user.organization.full_name}}
+                      </button>
+                      <div id="myDropdown" class="dropdown-content">
+                        <a href="{% url 'organization:profile' pk=user.organization.id %}">Shahsiy kabinet</a>
+                        <a href="{% url 'logout' %}">Tizimdan chiqish</a>
+                      </div>
+                    </div>
+                    {% endif %} 
+                 
+                  {% else %}
                   <li><a href="{% url 'login' %}">Tizimga kirish</a></li>
-                  <li><a href="{% url 'logout' %}">Tizimdan chiqish</a></li>
                   <div class="dropdown">
                     <button onclick="myFunction()" class="dropbtn">
                       Ro'yhatdan o'tish
@@ -131,9 +153,8 @@
                       </a>
                     </div>
                   </div>
-
-									<li><a href="{% url 'library:profile' %}">Shahsiy kabinet</a></li>
-</ul>
+                  {% endif %}
+                </ul>
               </div>
             </div>
           </div>
@@ -265,7 +286,13 @@
                       <h5 class="footer-title">Havolalar</h5>
                       <ul>
                         <li><a href="{% url 'news' %}">Yangiliklar</a></li>
-                        <li><a href="{% url 'library:profile' %}">Shahsiy kabinet</a></li>
+                        {% if user.is_authenticated %}
+                          {% if user.library%}
+                            <li><a href="{% url 'library:profile' pk=user.library.id%}">Shahsiy kabinet</a></li>
+                          {% elif user.organization %}
+                            <li><a href="{% url 'organization:profile' pk=user.organization.id %}">Shahsiy kabinet</a></li>
+                          {% endif %}
+                        {% endif %}
                       </ul>
                     </div>
                   </div>

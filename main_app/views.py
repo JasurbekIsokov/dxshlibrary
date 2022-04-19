@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import  HttpResponseRedirect
 from django.urls import reverse
@@ -9,7 +9,6 @@ from .models import New, Event, Contact
 
 class HomeView(TemplateView):
     template_name = 'main_app/index.html'
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         news = New.objects.all()
@@ -17,6 +16,7 @@ class HomeView(TemplateView):
         context['news'] = news
         context['events'] = events
         return context
+
     
 def user_login(request):
     message = ''
@@ -32,18 +32,20 @@ def user_login(request):
                 return HttpResponseRedirect(reverse('home'))
             else:
                 message = 'Foydalanuvchi faolsizlantirilgan'
-                return render(request, {'message': message}, 'main_app/login.html')
+                return render(request, 'main_app/login.html', {'message': message})
         else:
             message = 'Foydalanuvchi nomi yoki parol xato!'
-            return render(request, {'message': message}, 'main_app/login.html')
+            return render(request, 'main_app/login.html', {'message': message})
 
     else:
         return render(request, "main_app/login.html")
-    
+
+
 @login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('home'))
+
 
 class NewsView(TemplateView):
     template_name = "main_app/news.html"
@@ -53,10 +55,12 @@ class NewsView(TemplateView):
         context['news'] = news
         return context
 
+
 class DetailNew(DetailView):
     context_object_name = 'news'
     model = New
     template_name = "main_app/single_news.html"
+
 
 def contact(request):
     message = ''
@@ -73,7 +77,8 @@ def contact(request):
             title=title,
             body=body
         )
+      
         message = "Xabaringiz yuborildi!"
-        return render(request, {'messgage': message}, "main_app/contact.html")
+        return render(request,  'main_app/contact.html',{'message': message})
 
     return render(request, "main_app/contact.html")

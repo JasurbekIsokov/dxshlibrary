@@ -3,12 +3,28 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.models import User
 from .models import Organization
-
+from main_app.models import New
+from library.models import Library
 
 # Create your views here.
     
-def profile(request):
-    return HttpResponse("<h1>profile organization</h1>") 
+def profile_organization(request, pk=None):
+    print(pk)
+    libraries = Library.objects.all()
+    organizations = Organization.objects.all()
+    organization = {}
+    for o in organizations:
+        if pk == o.id:
+            organization = o
+    news = New.objects.all()
+    news = news.reverse()
+    context = {
+        'organization':o,
+        'news': news,
+        'libraries': libraries
+    }
+    return render(request, 'organization/organization_profile.html',context) 
+
 
 def register(request):
     registered = False

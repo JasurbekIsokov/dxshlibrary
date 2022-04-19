@@ -68,9 +68,11 @@
                 <a href="{% url 'organization:register' %}">(Tashkilot)</a>
               </p>
             </div>
-            {{message}}
+            
             <form class="contact-bx" method="post">
               {% csrf_token %}
+              {% if message %}
+              <div class="alert alert-danger">{{message}}</div>{% endif %} 
               <div class="row placeani">
                 <div class="col-lg-12">
                   <div class="form-group">

@@ -1,8 +1,10 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from .models import Library
+from organization.models import Organization
+from main_app.models import New, Contract
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -14,8 +16,54 @@ class Libraries(TemplateView):
         context['libraries'] = news
         return context
     
-def profile(request):
-    return HttpResponse("<h1>profile library</h1>") 
+def profile(request, pk):
+    if request.method == "POST":
+        help = request.POST.get('help')
+        library_id = request.POST.get('library_id')
+        organization_id = request.POST.get('organization_id')
+        app_file = request.FILES.get('app')
+        print(app_file)
+
+        organization = Organization.objects.get(id=organization_id)
+        library = Library.objects.get(id=library_id)
+
+        Contract.objects.create(
+            organization = organization,
+            library = library,
+            help = help,
+            app_file = app_file,
+        )
+
+        libraries = Library.objects.all()
+        organizations = Organization.objects.all()
+        library = {}
+        for l in libraries:
+            if pk == l.id:
+                library = l
+        news = New.objects.all()
+        news = news.reverse()
+        context = {
+            'library':l,
+            'news': news,
+            'organizations': organizations
+        }
+
+        return render(request, 'library/library_profile.html',context)
+
+    libraries = Library.objects.all()
+    organizations = Organization.objects.all()
+    library = {}
+    for l in libraries:
+        if pk == l.id:
+            library = l
+    news = New.objects.all()
+    news = news.reverse()
+    context = {
+        'library':l,
+        'news': news,
+        'organizations': organizations
+    }
+    return render(request, 'library/library_profile.html',context) 
 
 def register(request):
     registered = False

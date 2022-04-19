@@ -71,10 +71,12 @@
       </div>
       <div class="col-lg-7 col-md-7">
         <form class="contact-bx" method="post">
-          {% csrf_token %}
-          <div class="ajax-message">{{message}}</div>
+          {% csrf_token %} {% if message %}
+          <div class="alert alert-success">{{message}}</div>
+          {% endif %}
+
           <div class="heading-bx left">
-            <h2 class="title-head">Aloqa <span> qilish</span></h2>
+            <h2 class="title-head">Biz <span> bilan bog'lanish</span></h2>
             <p>Malumotlaringizni kiriting.</p>
           </div>
           <div class="row placeani">
