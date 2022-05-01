@@ -33,31 +33,40 @@
             <div class="recent-news">
               {% if library.library_pic %}
               <div class="action-box">
-                <img src="{{library.library_pic.url}}" alt="" />
+                <img
+                  src="{{library.library_pic.url}}"
+                  alt=""
+                  style="height: 250px; object-fit: cover"
+                />
               </div>
               {% endif %}
 
               <div class="info-bx">
-                <h5 class="post-title">
-                  <i class="fa fa-book" aria-hidden="true"></i>
-                  <a href="blog-details.html">{{library.full_name}}</a>
-                </h5>
-                <p>
-                  <i class="fa fa-map-marker" aria-hidden="true"></i>
-                  {{library.region}}<br />{{library.full_address}}
-                </p>
-                <p class="badge badge-warning" style="color: white">
-                  #{{library.partnership_type}}
-                </p>
-                <p>
-                  <i class="fa fa-paper-plane" aria-hidden="true"></i> Qo'llab
-                  quvvatlash:
-                </p>
-                <p style="font-size: 20px">
-                  <a href="#!" class="badge badge-success">Hamkorlik</a>
-                  <a href="#!" class="badge badge-success">Be'garaz yordam</a>
-                  <a href="#!" class="badge badge-success">Homiylik</a>
-                </p>
+                <div style="height: 260px; overflow-y: scroll">
+                  <h5 class="post-title">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <a href="blog-details.html">{{library.full_name}}</a>
+                  </h5>
+                  <p>
+                    <span style="color: blue"
+                      ><i class="fa fa-map-marker" aria-hidden="true"></i>
+                      {{library.region}}</span
+                    >.<br />{{library.full_address}}
+                  </p>
+                  <p class="badge badge-warning" style="color: white">
+                    #{{library.partnership_type}}
+                  </p>
+                  <p>
+                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Qo'llab
+                    quvvatlash:
+                  </p>
+                  <p style="font-size: 20px">
+                    <a href="#!" class="badge badge-success">Hamkorlik</a>
+                    <a href="#!" class="badge badge-success">Be'garaz yordam</a>
+                    <a href="#!" class="badge badge-success">Homiylik</a>
+                  </p>
+                </div>
+
                 <div class="post-extra">
                   <a
                     href="{% url 'library:profile' pk=library.id %}"
