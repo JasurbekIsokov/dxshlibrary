@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Mirrored from educhamp.themetrades.com/demo/admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:08:15 GMT -->
+  <head>
+    {% load static %}
+    <!-- META ============================================= -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="robots" content="" />
+
+    <!-- DESCRIPTION -->
+    <meta name="description" content="EduChamp : Education HTML Template" />
+
+    <!-- OG -->
+    <meta property="og:title" content="EduChamp : Education HTML Template" />
+    <meta
+      property="og:description"
+      content="EduChamp : Education HTML Template"
+    />
+    <meta property="og:image" content="" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- FAVICONS ICON ============================================= -->
+    <link rel="icon" href="../error-404.html" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="admin/images/favicon.png"
+    />
+
+    <!-- PAGE TITLE HERE ============================================= -->
+    <title>EduChamp : Education HTML Template</title>
+
+    <!-- MOBILE SPECIFIC ============================================= -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--[if lt IE 9]>
+      <script src="admin/js/html5shiv.min.js"></script>
+      <script src="admin/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- All PLUGINS CSS ============================================= -->
+    <link rel="stylesheet" type="text/css" href={% static 'admin/css/assets.css' %} />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href={% static 'admin/vendors/calendar/fullcalendar.css' %}
+    />
+
+    <!-- TYPOGRAPHY ============================================= -->
+    <link rel="stylesheet" type="text/css" href={% static 'admin/css/typography.css' %} />
+
+    <!-- SHORTCODES ============================================= -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href={% static 'admin/css/shortcodes/shortcodes.css' %}
+    />
+
+    <!-- STYLESHEETS ============================================= -->
+    <link rel="stylesheet" type="text/css" href={% static 'admin/css/style.css' %} />
+    <link rel="stylesheet" type="text/css" href={% static 'admin/css/dashboard.css' %} />
+    <link
+      class="skin"
+      rel="stylesheet"
+      type="text/css"
+      href={% static 'admin/css/color/color-1.css' %}
+    />
+  </head>
+  <body class="ttr-opened-sidebar ttr-pinned-sidebar">
+    <!-- header start -->
+    <header class="ttr-header">
+      <div class="ttr-header-wrapper">
+        <!--sidebar menu toggler start -->
+        <div class="ttr-toggle-sidebar ttr-material-button">
+          <i class="ti-close ttr-open-icon"></i>
+          <i class="ti-menu ttr-close-icon"></i>
+        </div>
+        <!--sidebar menu toggler end -->
+       
+        <!--logo end -->
+        <div class="ttr-header-menu">
+          <!-- header left menu start -->
+          <ul class="ttr-header-navigation">
+            <li>
+              <a
+                href="../index.html"
+                class="ttr-material-button ttr-submenu-toggle"
+                >Admin Panel</a
+              >
+            </li>
+          </ul>
+          <!-- header left menu end -->
+        </div>
+        <div class="ttr-header-right ttr-with-seperator">
+          <!-- header right menu start -->
+          <ul class="ttr-header-navigation">
+            <li>
+              <a href="#" class="ttr-material-button ttr-search-toggle"
+                >Chiqish</a>
+            </li>
+          </ul>
+          <!-- header right menu end -->
+        </div>
+      </div>
+    </header>
+    <!-- header end -->
+    <!-- Left sidebar menu start -->
+    <div class="ttr-sidebar">
+      <div class="ttr-sidebar-wrapper content-scroll">
+        <!-- side menu logo start -->
+        
+        <!-- side menu logo end -->
+        <!-- sidebar menu start -->
+        <nav class="ttr-sidebar-navi">
+          <ul>
+            <li>
+              <a href="#" class="ttr-material-button">
+                <span class="ttr-icon"><i class="ti-home"></i></span>
+                <span class="ttr-label">Asosiy sahifa</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="ttr-material-button">
+                <span class="ttr-icon"><i class="ti-book"></i></span>
+                <span class="ttr-label">Kutubxonalar</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="ttr-material-button">
+                <span class="ttr-icon"><i class="ti-email"></i></span>
+                <span class="ttr-label">Arizalar</span>
+              </a>
+             
+            </li>
+            <li>
+              <a href="#" class="ttr-material-button">
+                <span class="ttr-icon"><i class="ti-bookmark-alt"></i></span>
+                <span class="ttr-label">Tashkilotlar</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="ttr-material-button">
+                <span class="ttr-icon"><i class="ti-comments"></i></span>
+                <span class="ttr-label">Xabarlar</span>
+              </a>
+            </li>
+            <li class="ttr-seperate"></li>
+          </ul>
+          <!-- sidebar menu end -->
+        </nav>
+        <!-- sidebar menu end -->
+      </div>
+    </div>
+    <!-- Left sidebar menu end -->
+
+    <!--Main container start -->
+    <main class="ttr-wrapper">
+      <div class="container-fluid">
+        <!-- Card -->
+        <div class="row">
+          <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+            <div class="widget-card widget-bg1">
+              <div class="wc-item">
+                <h4 class="wc-title">Kutubxonalar</h4>
+                <span class="wc-stats">
+                  <span class="counter">{{lib_count}}</span>
+                </span>
+                <div class="progress wc-progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: 78%"
+                    aria-valuenow="50"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+                <span class="wc-progress-bx">
+                  <span class="wc-change"> O'zgarish </span>
+                  <span class="wc-number ml-auto"> 78% </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+            <div class="widget-card widget-bg2">
+              <div class="wc-item">
+                <h4 class="wc-title">Tashkilotlar</h4>
+                <span class="wc-stats counter"> {{org_count}} </span>
+                <div class="progress wc-progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: 88%"
+                    aria-valuenow="50"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+                <span class="wc-progress-bx">
+                  <span class="wc-change"> O'zgarish </span>
+                  <span class="wc-number ml-auto"> 88% </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+            <div class="widget-card widget-bg3">
+              <div class="wc-item">
+                <h4 class="wc-title">Arizalar</h4>
+                <span class="wc-stats counter"> {{contract_count}} </span>
+                <div class="progress wc-progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: 65%"
+                    aria-valuenow="50"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+                <span class="wc-progress-bx">
+                  <span class="wc-change"> O'zgarish </span>
+                  <span class="wc-number ml-auto"> 65% </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+            <div class="widget-card widget-bg4">
+              <div class="wc-item">
+                <h4 class="wc-title">Xabarlar</h4>
+                <span class="wc-stats counter"> {{contact_count}} </span>
+                <div class="progress wc-progress">
+                  <div
+                    class="progress-bar"
+                    role="progressbar"
+                    style="width: 90%"
+                    aria-valuenow="50"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+                <span class="wc-progress-bx">
+                  <span class="wc-change"> O'zgarish </span>
+                  <span class="wc-number ml-auto"> 90% </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card END -->
+        {% block content %}{% endblock content %}
+      </div>
+    </main>
+    <div class="ttr-overlay"></div>
+
+    <!-- External JavaScripts -->
+    <script src={% static 'admin/js/jquery.min.js' %}></script>
+    <script src={% static 'admin/vendors/bootstrap/js/popper.min.js' %}></script>
+    <script src={% static 'admin/vendors/bootstrap/js/bootstrap.min.js' %}></script>
+    <script src={% static 'admin/vendors/bootstrap-select/bootstrap-select.min.js' %}></script>
+    <script src={% static 'admin/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js' %}></script>
+    <script src={% static 'admin/vendors/magnific-popup/magnific-popup.js' %}></script>
+    <script src={% static 'admin/vendors/counter/waypoints-min.js' %}></script>
+    <script src={% static 'admin/vendors/counter/counterup.min.js' %}></script>
+    <script src={% static 'admin/vendors/imagesloaded/imagesloaded.js' %}></script>
+    <script src={% static 'admin/vendors/masonry/masonry.js' %}></script>
+    <script src={% static 'admin/vendors/masonry/filter.js' %}></script>
+    <script src={% static 'admin/vendors/owl-carousel/owl.carousel.js' %}></script>
+    <script src={% static 'admin/vendors/scroll/scrollbar.min.js' %}></script>
+    <script src={% static 'admin/js/functions.js' %}></script>
+    <script src={% static 'admin/vendors/chart/chart.min.js' %}></script>
+    <script src={% static 'admin/js/admin.js' %}></script>
+    <script src={% static 'admin/vendors/calendar/moment.min.js' %}></script>
+    <script src={% static 'admin/vendors/calendar/fullcalendar.js' %}></script>
+    <script src={% static 'admin/vendors/switcher/switcher.js' %}></script>
+    
+  </body>
+
+  <!-- Mirrored from educhamp.themetrades.com/demo/admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:09:05 GMT -->
+</html>

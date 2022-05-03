@@ -1,0 +1,121 @@
+{% extends 'admin_base.html' %} {% block content %} {% load static %}
+
+<div class="row">
+  <!-- Your Profile Views Chart -->
+  <div class="col-lg-8 m-b30">
+    <div class="widget-box">
+      <div class="wc-title">
+        <h4>Foydalanuvchilar grafigi</h4>
+      </div>
+      <div class="widget-inner">
+        <canvas id="chart" width="100" height="45"></canvas>
+      </div>
+    </div>
+  </div>
+  <!-- Your Profile Views Chart END-->
+  <div class="col-lg-4 m-b30">
+    <div class="widget-box">
+      <div class="wc-title">
+        <h4>Sizga xabarlar</h4>
+      </div>
+      <div class="widget-inner">
+        <div class="noti-box-list">
+          {% if not contacts %}
+          <p class="alert alert-warning">Mavjud emas.</p>
+          {% endif %}
+          <ul>
+            {% for contact in contacts %}
+            <li>
+              <span class="notification-icon dashbg-green">
+                <i class="fa fa-comments-o"></i>
+              </span>
+              <span class="notification-text">
+                <a href="#">{{contact.name}}</a> {{contact.title}}
+              </span>
+              <span class="notification-time">
+                <span
+                  >{{contact.date_added.day}}/{{contact.date_added.month}}/{{contact.date_added.year}}</span
+                >
+              </span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 m-b30">
+    <div class="widget-box">
+      <div class="wc-title">
+        <h4>Kutubxonalar</h4>
+      </div>
+      <div class="widget-inner">
+        <div class="new-user-list">
+          <ul>
+            {% for library in libraries %}
+            <li>
+              <span class="new-users-pic">
+                <img
+                  src="{{library.library_pic.url}}"
+                  alt=""
+                  style="height: 100%; width: 100%; object-fit: cover"
+                />
+              </span>
+              <span class="new-users-text">
+                <a href="#" class="new-users-name">{{library.full_name}} </a>
+                <span class="new-users-info"
+                  >Qo'shilgan: {{library.date_added}}
+                </span>
+              </span>
+            </li>
+            {% endfor %}
+
+            <span class="new-users-btn">
+              <a href="#" class="btn button-sm outline">Barchasi</a>
+            </span>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 m-b30">
+    <div class="widget-box">
+      <div class="wc-title">
+        <h4>Tashkilotlar</h4>
+      </div>
+      <div class="widget-inner">
+        <div class="new-user-list">
+          {% if not organizations %}
+          <p class="alert alert-warning">Mavjud emas.</p>
+          {% endif %}
+          <ul>
+            {% for organization in organizations %}
+            <li>
+              <span class="new-users-pic">
+                <img
+                  src="{{organization.organization_pic.url}}"
+                  alt=""
+                  style="height: 100%; width: 100%; object-fit: cover"
+                />
+              </span>
+              <span class="new-users-text">
+                <a href="#" class="new-users-name"
+                  >{{organization.full_name}}
+                </a>
+                <span class="new-users-info"
+                  >Qo'shilgan: {{organization.date_added}}
+                </span>
+              </span>
+            </li>
+            {% endfor %}
+
+            <span class="new-users-btn">
+              <a href="#" class="btn button-sm outline">Barchasi</a>
+            </span>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
