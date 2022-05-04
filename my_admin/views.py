@@ -4,8 +4,7 @@ from main_app.models import *
 from library.models import *
 from organization.models import *
 
-# Create your views here.
-def home_admin(request):
+def get_all_data():
     libraries = Library.objects.all()
     lib_count = libraries.count()
     organizations = Organization.objects.all()
@@ -17,7 +16,7 @@ def home_admin(request):
     contracts = Contract.objects.all()
     contract_count = contacts.count()
 
-    context = {
+    return {
         "libraries":libraries,
         "lib_count":lib_count,
         "organizations":organizations,
@@ -29,16 +28,22 @@ def home_admin(request):
         "contracts":contracts,
         "contract_count":contract_count
     }
-    return render(request, "my_admin/admin_home.html", context)
+
+# Create your views here.
+def home_admin(request):
+    return render(request, "my_admin/admin_home.html", get_all_data())
 
 def libraries(request):
-    return HttpResponse("<h1>Libraries admin</h1>")
+    return render(request, "my_admin/admin_library.html", get_all_data())
 
 def organizations(request):
-    return HttpResponse("<h1>Organizations admin</h1>")
+    return render(request, "my_admin/admin_organization.html", get_all_data())
 
 def contracts(request):
-    return HttpResponse("<h1>Admin contracts</h1>")
+    return render(request, "my_admin/admin_contract.html", get_all_data())
+
+def contacts(request):
+    return render(request, "my_admin/admin_contact.html", get_all_data())
 
 def news(request):
-    return HttpResponse("<h1>Admin news</h1>")
+    return render(request, "my_admin/admin_news.html", get_all_data())

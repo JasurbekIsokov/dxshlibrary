@@ -117,34 +117,40 @@
         <nav class="ttr-sidebar-navi">
           <ul>
             <li>
-              <a href="#" class="ttr-material-button">
+              <a href="{% url 'my_admin:home' %}" class="ttr-material-button">
                 <span class="ttr-icon"><i class="ti-home"></i></span>
                 <span class="ttr-label">Asosiy sahifa</span>
               </a>
             </li>
             <li>
-              <a href="#" class="ttr-material-button">
+              <a href="{% url 'my_admin:library' %}" class="ttr-material-button">
                 <span class="ttr-icon"><i class="ti-book"></i></span>
                 <span class="ttr-label">Kutubxonalar</span>
               </a>
             </li>
             <li>
-              <a href="#" class="ttr-material-button">
+              <a href="{% url 'my_admin:organization' %}" class="ttr-material-button">
+                <span class="ttr-icon"><i class="ti-bookmark-alt"></i></span>
+                <span class="ttr-label">Tashkilotlar</span>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'my_admin:contract' %}" class="ttr-material-button">
                 <span class="ttr-icon"><i class="ti-email"></i></span>
                 <span class="ttr-label">Arizalar</span>
               </a>
              
             </li>
             <li>
-              <a href="#" class="ttr-material-button">
-                <span class="ttr-icon"><i class="ti-bookmark-alt"></i></span>
-                <span class="ttr-label">Tashkilotlar</span>
+              <a href="{% url 'my_admin:contact' %}" class="ttr-material-button">
+                <span class="ttr-icon"><i class="ti-comments"></i></span>
+                <span class="ttr-label">Xabarlar</span>
               </a>
             </li>
             <li>
-              <a href="#" class="ttr-material-button">
-                <span class="ttr-icon"><i class="ti-comments"></i></span>
-                <span class="ttr-label">Xabarlar</span>
+              <a href="{% url 'my_admin:news' %}" class="ttr-material-button">
+                <span class="ttr-icon"><i class="ti-calendar"></i></span>
+                <span class="ttr-label">Yangiliklar</span>
               </a>
             </li>
             <li class="ttr-seperate"></li>

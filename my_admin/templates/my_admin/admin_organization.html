@@ -1,0 +1,55 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12 m-b30">
+          <div class="widget-box">
+            <div class="wc-title">
+              <h4>Kutubxonalar</h4>
+            </div>
+            <div class="widget-inner">
+                {% for organization in organizations %}
+                <div class="card-courses-list admin-courses">
+                <div class="card-courses-media">
+                  <img src="{{organization.organization_pic.url}}" alt=""style="height: 100%; width: 100%; object-fit: cover"/>
+                </div>
+                <div class="card-courses-full-dec">
+                  <div class="card-courses-title">
+                    <h4>{{organization.full_name}}</h4>
+                  </div>
+                  <div class="card-courses-list-bx">
+                    <span style="color: blue"
+                    ><i class="fa fa-map-marker" aria-hidden="true"></i>
+                    {{organization.region}}</span
+                  >.<br />{{organization.full_address}}
+                  </div>
+                  <div class="row card-courses-dec">
+                    <div class="col-md-12">
+                        <p>
+                            Foydalanuvchi nomi <b>{{organization.user.username}}</b><br />
+                            Telefon: <b>{{organization.phone}}</b><br />
+                            Ochilgan yili: <b>{{organization.open_year}} - yil</b><br/>
+                            Tizimga qo'shilgan vaqti: <b>{{organization.date_added}}</b><br />
+                        </p>
+                    </div>
+                    <div class="col-md-12">
+                        {% if organization.is_active %}
+                            <a href="#" class="btn red outline radius-xl ">Faolsizlashtirish</a> 
+                        {% else %}
+                            <a href="#" class="btn green radius-xl outline">Faollashtirish</a> 
+                        {% endif %}
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+                {% endfor %}
+              
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+{% endblock content %}
+

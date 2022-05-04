@@ -1,0 +1,81 @@
+{% extends 'admin_base.html' %} {% block content %}
+
+<div class="row">
+  <!-- Your Profile Views Chart -->
+  <div class="col-lg-6 m-b30">
+    <div class="widget-box">
+      <div class="wc-title">
+        <h4>O'qilmagan xabarlar</h4>
+      </div>
+      <div class="widget-inner">
+        <div class="new-user-list">
+          {% if contacts %} {% for contact in contacts %}
+          <ul>
+            {% if not contact.is_read %}
+            <li>
+              <span class="new-users-text">
+                <a href="#" class="new-users-name">FISH: {{contact.name}}</a>
+                <span class="new-users-info"
+                  >Email: <b>{{contact.email}}</b> </span
+                ><br />
+                <span class="new-users-info"
+                  >Telefon: <b>{{contact.phone}}</b> </span
+                ><br />
+                <span class="new-users-info"
+                  >Xabar matni: <b>{{contact.title}}</b><br /> </span
+                ><br />
+                <span class="new-users-info">
+                  <a href="#" class="btn button-sm">Ko'rish</a> </span
+                ><br />
+              </span>
+              <span class="new-users-btn">
+                <a href="#" class="btn button-sm outline">O'qildi</a> </span
+              ><br />
+            </li>
+            {% endif %} {% endfor %}
+          </ul>
+          {% else %}
+          <p class="alert alert-warning">Ma'lumotlar yo'q</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 m-b30">
+    <div class="widget-box">
+      <div class="wc-title">
+        <h4>O'qilgan xabarlar</h4>
+      </div>
+      <div class="widget-inner">
+        <div class="orders-list">
+          {% if contacts %}
+          <ul>
+            {% for contact in contacts %} {% if contact.is_read %}
+            <li>
+              <span class="new-users-text">
+                <a href="#" class="new-users-name">FISH: {{contact.name}}</a>
+                <span class="new-users-info"
+                  >Email: <b>{{contact.email}}</b> </span
+                ><br />
+                <span class="new-users-info"
+                  >Telefon: <b>{{contact.phone}}</b> </span
+                ><br />
+                <span class="new-users-info"
+                  >Xabar matni: <b>{{contact.title}}</b><br /> </span
+                ><br />
+                <span class="new-users-info">
+                  <a href="#" class="btn button-sm">Ko'rish</a> </span
+                ><br />
+              </span>
+            </li>
+            {% endif %} {% endfor %}
+          </ul>
+          {% else %}
+          <p class="alert alert-warning">Ma'lumotlar yo'q</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

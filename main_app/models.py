@@ -53,6 +53,7 @@ class Contact(models.Model):
     phone = models.CharField(max_length=50)
     title = models.CharField(max_length=50)
     body = models.TextField()
+    is_read = models.BooleanField(default=False)
    
 
     def __str__(self) -> str:
