@@ -4,18 +4,25 @@ from django.http import  HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView
-from .models import New, Event, Contact
+from .models import *
 
 
 class HomeView(TemplateView):
     template_name = 'main_app/index.html'
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+
+    # for middleware
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            if MyAdmin.objects.filter(user=request.user):
+                return HttpResponseRedirect(reverse('my_admin:home'))
+        
         news = New.objects.all()
         events = Event.objects.all()
-        context['news'] = news
-        context['events'] = events
-        return context
+        context = {
+            "news": news,
+            "events": events,
+        }
+        return render(request, 'main_app/index.html', context)
 
     
 def user_login(request):
@@ -29,6 +36,8 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
+                if MyAdmin.objects.filter(user = user):
+                    return HttpResponseRedirect(reverse('my_admin:home'))
                 return HttpResponseRedirect(reverse('home'))
             else:
                 message = 'Foydalanuvchi faolsizlantirilgan'

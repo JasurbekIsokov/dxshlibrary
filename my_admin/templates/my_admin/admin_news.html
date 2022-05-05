@@ -1,3 +1,92 @@
 {% extends 'admin_base.html' %} {% block content %}
-<h2 class="alert alert-warning">Amalga oshirilmoqda...</h2>
+<div>
+  <div class="row">
+    <div class="col-lg-12 m-b30">
+      <div class="widget-box">
+        <div class="wc-title">
+          <h4>Yangiliklar</h4>
+        </div>
+        {% for new in news %}
+        <div class="widget-inner">
+          <div class="card-courses-list admin-courses">
+            <div class="card-courses-media">
+              <img src="{{new.news_pic.url}}" alt="" />
+            </div>
+            <div class="card-courses-full-dec">
+              <div class="card-courses-title">
+                <h4>{{new.title}}</h4>
+              </div>
+              <div class="row card-courses-dec">
+                <div class="col-md-12">
+                  <h6 class="m-b10">
+                    <i class="fa fa-calendar"></i> {{new.date_added}}
+                  </h6>
+                  <p>{{new.body}}</p>
+                  <a href="#" class="btn red outline radius-xl">O'chirish</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Your Profile Views Chart -->
+      <div class="col-lg-12 m-b30">
+        <div class="widget-box">
+          <div class="wc-title">
+            <h4>Yangilik qo'shish</h4>
+          </div>
+          <div class="widget-inner">
+            <form class="edit-profile m-b30">
+              <div class="row">
+                <div class="col-12">
+                  <div class="ml-auto">
+                    <h3>1. Malumotlar</h3>
+                  </div>
+                </div>
+                <div class="form-group col-6">
+                  <label class="col-form-label">Yangilik nomi</label>
+                </div>
+                <div class="form-group col-6">
+                  <div>
+                    <input class="form-control" type="text" value="" />
+                  </div>
+                </div>
+                <div class="seperator"></div>
+                <div class="col-12 m-t20">
+                  <div class="ml-auto m-b5">
+                    <h3>2. Yangilik matni</h3>
+                  </div>
+                </div>
+                <div class="form-group col-12">
+                  <label class="col-form-label">Course description</label>
+                  <div>
+                    <textarea class="form-control"> </textarea>
+                  </div>
+                </div>
+                <button type="button" class="btn-secondry add-item m-r5">
+                  <i class="fa fa-fw fa-plus-circle"></i
+                  ><input
+                    type="file"
+                    placeholder="Fayl Yuklash"
+                    style="opacity: 1"
+                    accept="image/*"
+                  />
+                </button>
+                <button type="button" class="btn-secondry add-item m-r5">
+                  <i class="fa fa-fw fa-plus-circle"></i>Saqlash
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Your Profile Views Chart END-->
+    </div>
+  </div>
+</div>
 {% endblock content %}

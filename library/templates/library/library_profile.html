@@ -242,11 +242,8 @@
                       {% elif contract.state == "Qabul qilindi" %}
 
                       <p class="alert alert-success">
-                        <a href="{{contract.app_file.url}}" target="bank"
-                          ><i class="fa fa-check" aria-hidden="true"></i>
-                          Qabul qilindi. (Arizani yuklash)
-                          <i class="fa fa-download" aria-hidden="true"></i
-                        ></a>
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                          Qabul qilindi.
                       </p>
                       {% elif contract.state == "Bekor qilindi" %}
                       <p class="alert alert-danger">

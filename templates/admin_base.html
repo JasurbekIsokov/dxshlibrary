@@ -86,7 +86,7 @@
           <ul class="ttr-header-navigation">
             <li>
               <a
-                href="../index.html"
+                href="{% url 'my_admin:home' %}"
                 class="ttr-material-button ttr-submenu-toggle"
                 >Admin Panel</a
               >
@@ -98,7 +98,7 @@
           <!-- header right menu start -->
           <ul class="ttr-header-navigation">
             <li>
-              <a href="#" class="ttr-material-button ttr-search-toggle"
+              <a href="{% url 'logout' %}" 
                 >Chiqish</a>
             </li>
           </ul>

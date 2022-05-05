@@ -1,8 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 import os
 from library.models import Library
 from organization.models import Organization
-# Create your models here.
+
 
 def path_and_rename_news(instance, filename):
     upload_to = 'Images/News/'
@@ -91,3 +92,11 @@ class Contract(models.Model):
 
     def __str__(self) -> str:
         return self.organization.full_name + ' ' + self.library.full_name
+
+
+class MyAdmin(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_type = models.CharField(max_length=15, default="my_admin")
+
+    def __str__(self) -> str:
+        return self.user.username
