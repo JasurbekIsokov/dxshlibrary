@@ -1,3 +1,111 @@
 {% extends 'admin_base.html' %} {% block content %}
-<h2 class="alert alert-warning">Amalga oshirilmoqda...</h2>
+<div class="row">
+  <div class="col-lg-12 m-b30">
+    <div class="widget-box">
+      <div class="wc-title">
+        <h3>Arizalar</h3>
+      </div>
+      <div class="widget-inner">
+        <div class="new-user-list">
+          <ul>
+            {% for contract in contracts %}
+            <li>
+              <div class="col-12 justify-content-center">
+                <h4 class="alert alert-info">
+                  Ariza raqami - {{contract.id}}.
+                  <span class="badge badge-success">#{{contract.help}}</span>
+                  <b>{{contract.date_added}}</b>
+                </h4>
+                <div
+                  class="row"
+                  style="display: flex; justify-content: center; width: 100%"
+                >
+                  <div class="col-5">
+                    <h4>Kimdan:</h4>
+                    <div class="row">
+                      <span class="new-users-pic">
+                        <img
+                          src="{{contract.organization.organization_pic.url}}"
+                          alt=""
+                          style="height: 100%; width: 100%; object-fit: cover"
+                        />
+                      </span>
+                      <span class="new-users-text">
+                        <a href="#" class="new-users-name"
+                          >{{contract.organization.full_name}}
+                        </a>
+                        <span class="new-users-info"
+                          >Qo'shilgan: {{contract.organization.date_added}}
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-5">
+                    <h4>Kimga:</h4>
+                    <div class="row">
+                      <span class="new-users-pic">
+                        <img
+                          src="{{contract.library.library_pic.url}}"
+                          alt=""
+                          style="height: 100%; width: 100%; object-fit: cover"
+                        />
+                      </span>
+                      <span class="new-users-text">
+                        <a href="#" class="new-users-name"
+                          >{{contract.library.full_name}}
+                        </a>
+                        <span class="new-users-info"
+                          >Qo'shilgan: {{contract.library.date_added}}
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <!--info for contract-->
+                <div class="row">
+                  <div class="widget-inner">
+                    <div class="col-12">
+                      {% if contract.state == "Kutilmoqda" %}
+                      <a href="#" class="btn green outline radius-xl"
+                        >Qabul qilish</a
+                      >
+                      <a href="#" class="btn red radius-xl outline"
+                        >Qaytarish</a
+                      >
+                      {% elif contract.state == "Bekor qilindi"%}
+                      <h4>
+                        Ariza holati:
+                        <span href="#!" class="badge badge-danger"
+                          >#Qaytarildi</span
+                        >
+                      </h4>
+
+                      {% elif contract.state == "Qabul qilindi"%}
+                      <b>Ariza holati: </b>
+                      <h4>
+                        Ariza holati:
+                        <span href="#!" class="badge badge-success"
+                          >#Qabul qilindi</span
+                        >
+                      </h4>
+
+                      {% endif %}
+
+                      <a
+                        href="{{contract.app_file.url}}"
+                        class="btn gold radius-xl"
+                        >Yuklab olish
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}
