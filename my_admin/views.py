@@ -14,7 +14,7 @@ def get_all_data():
     contacts = Contact.objects.all()
     con_count = contacts.count()
     contracts = Contract.objects.all()
-    contract_count = contacts.count()
+    contract_count = contracts.count()
 
     return {
         "libraries":libraries,
