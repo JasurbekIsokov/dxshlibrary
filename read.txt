@@ -1,0 +1,6 @@
+Admin panelda nimalar qilish mumkin:
+    1. Saytni to'liq nazort qilish;
+    2. Kutubxona va tashkilotlar haqida ma'lumotlarni ko'rish hamda ularni faolsizlantirsh yoki aksincha;
+    3. Arizalarni ko'rish, yuklash hamda qabul qilish yoki qaytarish;
+    4. Adminga kelgan xabarlarni ko'rish;
+    5. Yangiliklarni ko'rish, o'chirish va yangi qo'shish;
