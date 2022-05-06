@@ -19,17 +19,33 @@
                   >Email: <b>{{contact.email}}</b> </span
                 ><br />
                 <span class="new-users-info"
+                  >Vaqti: <b>{{contact.date_added}}</b> </span
+                ><br />
+                <span class="new-users-info"
                   >Telefon: <b>{{contact.phone}}</b> </span
                 ><br />
                 <span class="new-users-info"
-                  >Xabar matni: <b>{{contact.title}}</b><br /> </span
+                  >Xabar mavzusi: <b>{{contact.title}}</b></span
                 ><br />
-                <span class="new-users-info">
-                  <a href="#" class="btn button-sm">Ko'rish</a> </span
+                <span class="new-users-info"
+                  >Xabar matni: <b>{{contact.body}}</b></span
                 ><br />
               </span>
               <span class="new-users-btn">
-                <a href="#" class="btn button-sm outline">O'qildi</a> </span
+                <form method="post">
+                  {% csrf_token %}
+                  <input
+                    name="id"
+                    value="{{contact.id}}"
+                    style="display: none"
+                  />
+                  <input
+                    class="btn button-sm outline"
+                    type="submit"
+                    name="read"
+                    value="O'qildi"
+                  />
+                </form> </span
               ><br />
             </li>
             {% endif %} {% endfor %}
@@ -47,10 +63,10 @@
         <h4>O'qilgan xabarlar</h4>
       </div>
       <div class="widget-inner">
-        <div class="orders-list">
-          {% if contacts %}
+        <div class="new-user-list">
+          {% if contacts %} {% for contact in contacts %}
           <ul>
-            {% for contact in contacts %} {% if contact.is_read %}
+            {% if contact.is_read %}
             <li>
               <span class="new-users-text">
                 <a href="#" class="new-users-name">FISH: {{contact.name}}</a>
@@ -58,13 +74,16 @@
                   >Email: <b>{{contact.email}}</b> </span
                 ><br />
                 <span class="new-users-info"
+                  >Vaqti: <b>{{contact.date_added}}</b> </span
+                ><br />
+                <span class="new-users-info"
                   >Telefon: <b>{{contact.phone}}</b> </span
                 ><br />
                 <span class="new-users-info"
-                  >Xabar matni: <b>{{contact.title}}</b><br /> </span
+                  >Xabar mavzusi: <b>{{contact.title}}</b></span
                 ><br />
-                <span class="new-users-info">
-                  <a href="#" class="btn button-sm">Ko'rish</a> </span
+                <span class="new-users-info"
+                  >Xabar matni: <b>{{contact.body}}</b></span
                 ><br />
               </span>
             </li>

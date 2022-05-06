@@ -1,59 +1,77 @@
-{% extends 'admin_base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'admin_base.html' %} {% load static %} {% block content %}
 <div class="row">
-    <div class="col-lg-12 m-b30">
-          <div class="widget-box">
-            <div class="wc-title">
-              <h4>Kutubxonalar</h4>
+  <div class="col-lg-12 m-b30">
+    <div class="widget-box">
+      <div class="wc-title">
+        <h4>Kutubxonalar</h4>
+      </div>
+      <div class="widget-inner">
+        {% for library in libraries %}
+        <div class="card-courses-list admin-courses">
+          <div class="card-courses-media">
+            <img
+              src="{{library.library_pic.url}}"
+              alt=""
+              style="height: 100%; width: 100%; object-fit: cover"
+            />
+          </div>
+          <div class="card-courses-full-dec">
+            <div class="card-courses-title">
+              <h4>{{library.full_name}}</h4>
             </div>
-            <div class="widget-inner">
-                {% for library in libraries %}
-                <div class="card-courses-list admin-courses">
-                <div class="card-courses-media">
-                  <img src="{{library.library_pic.url}}" alt=""style="height: 100%; width: 100%; object-fit: cover"/>
-                </div>
-                <div class="card-courses-full-dec">
-                  <div class="card-courses-title">
-                    <h4>{{library.full_name}}</h4>
-                  </div>
-                  <div class="card-courses-list-bx">
-                    <span style="color: blue"
-                    ><i class="fa fa-map-marker" aria-hidden="true"></i>
-                    {{library.region}}</span
-                  >.<br />{{library.full_address}}
-                  </div>
-                  <div class="row card-courses-dec">
-                    <div class="col-md-12">
-                        <p class="badge badge-warning" style="color: white">
-                            #{{library.partnership_type}}
-                        </p>
-                        <p>
-                            Foydalanuvchi nomi <b>{{library.user.username}}</b><br />
-                            Ochilgan yili: <b>{{library.open_year}} - yil</b><br/>
-                            Umumiy fondi: <b>{{library.general_fund}} so'm</b><br />
-                            Foydalanuvchilar soni: <b>{{library.number_of_users}} ta</b><br />
-                            Tizimga qo'shilgan vaqti: <b>{{library.date_added}}</b><br />
-                        </p>
-                    </div>
-                    <div class="col-md-12">
-                        {% if library.is_active %}
-                            <a href="#" class="btn red outline radius-xl ">Faolsizlashtirish</a> 
-                        {% else %}
-                            <a href="#" class="btn green radius-xl outline">Faollashtirish</a> 
-                        {% endif %}
-                    </div>
-                  </div>
-                  
-                </div>
+            <div class="card-courses-list-bx">
+              <span style="color: blue"
+                ><i class="fa fa-map-marker" aria-hidden="true"></i>
+                {{library.region}}</span
+              >.<br />{{library.full_address}}
+            </div>
+            <div class="row card-courses-dec">
+              <div class="col-md-12">
+                <p class="badge badge-warning" style="color: white">
+                  #{{library.partnership_type}}
+                </p>
+                <p>
+                  Foydalanuvchi nomi <b>{{library.user.username}}</b><br />
+                  Ochilgan yili: <b>{{library.open_year}} - yil</b><br />
+                  Umumiy fondi: <b>{{library.general_fund}} so'm</b><br />
+                  Foydalanuvchilar soni: <b>{{library.number_of_users}} ta</b
+                  ><br />
+                  Tizimga qo'shilgan vaqti: <b>{{library.date_added}}</b><br />
+                </p>
               </div>
-                {% endfor %}
-              
+              <div class="col-md-12">
+                <form method="post">
+                  {% csrf_token %}
+                  <input
+                    name="id"
+                    value="{{library.id}}"
+                    type="text"
+                    style="display: none"
+                  />
+                  {% if library.is_active %}
+
+                  <input
+                    class="btn red outline radius-xl"
+                    value="Faolsizlashtirish"
+                    type="submit"
+                  />
+                  {% else %}
+
+                  <input
+                    class="btn green outline radius-xl"
+                    value="Faollashtirish"
+                    type="submit"
+                  />
+                  {% endif %}
+                </form>
+              </div>
             </div>
           </div>
         </div>
+        {% endfor %}
       </div>
+    </div>
+  </div>
 </div>
-{% endblock content %}
 
+{% endblock content %}

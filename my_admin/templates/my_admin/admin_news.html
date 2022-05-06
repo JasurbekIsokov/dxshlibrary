@@ -6,7 +6,9 @@
         <div class="wc-title">
           <h4>Yangiliklar</h4>
         </div>
-        {% for new in news %}
+        {% if not news %}
+        <div class="alert alert-warning">Malumotlar yo'q</div>
+        {% else %} {% for new in news %}
         <div class="widget-inner">
           <div class="card-courses-list admin-courses">
             <div class="card-courses-media">
@@ -22,13 +24,22 @@
                     <i class="fa fa-calendar"></i> {{new.date_added}}
                   </h6>
                   <p>{{new.body}}</p>
-                  <a href="#" class="btn red outline radius-xl">O'chirish</a>
+                  <form method="post">
+                    {% csrf_token %}
+                    <input value="{{new.id}}" name="id" style="display: none" />
+                    <input
+                      class="btn red outline radius-xl"
+                      value="O'chirish"
+                      name="value"
+                      type="submit"
+                    />
+                  </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {% endfor %}
+        {% endfor %} {% endif %}
       </div>
     </div>
   </div>
@@ -41,7 +52,12 @@
             <h4>Yangilik qo'shish</h4>
           </div>
           <div class="widget-inner">
-            <form class="edit-profile m-b30">
+            <form
+              class="edit-profile m-b30"
+              method="post"
+              enctype="multipart/form-data"
+            >
+              {% csrf_token %}
               <div class="row">
                 <div class="col-12">
                   <div class="ml-auto">
@@ -51,9 +67,9 @@
                 <div class="form-group col-6">
                   <label class="col-form-label">Yangilik nomi</label>
                 </div>
-                <div class="form-group col-6">
+                <div class="form-group col-12">
                   <div>
-                    <input class="form-control" type="text" value="" />
+                    <input class="form-control" type="text" name="title" />
                   </div>
                 </div>
                 <div class="seperator"></div>
@@ -65,19 +81,19 @@
                 <div class="form-group col-12">
                   <label class="col-form-label">Course description</label>
                   <div>
-                    <textarea class="form-control"> </textarea>
+                    <textarea class="form-control" name="body"> </textarea>
                   </div>
                 </div>
                 <button type="button" class="btn-secondry add-item m-r5">
-                  <i class="fa fa-fw fa-plus-circle"></i
-                  ><input
+                  <input
                     type="file"
                     placeholder="Fayl Yuklash"
                     style="opacity: 1"
                     accept="image/*"
+                    name="img"
                   />
                 </button>
-                <button type="button" class="btn-secondry add-item m-r5">
+                <button type="submit" class="btn-secondry add-item m-r5">
                   <i class="fa fa-fw fa-plus-circle"></i>Saqlash
                 </button>
               </div>

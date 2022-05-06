@@ -24,13 +24,15 @@
           <p class="alert alert-warning">Mavjud emas.</p>
           {% endif %}
           <ul>
-            {% for contact in contacts %}
+            {% for contact in contacts %} {% if not contact.is_read %}
             <li>
               <span class="notification-icon dashbg-green">
                 <i class="fa fa-comments-o"></i>
               </span>
               <span class="notification-text">
-                <a href="#">{{contact.name}}</a> {{contact.title}}
+                <a href="{% url 'my_admin:contact' %}">{{contact.name}}</a
+                ><br />
+                {{contact.title}}
               </span>
               <span class="notification-time">
                 <span
@@ -38,7 +40,7 @@
                 >
               </span>
             </li>
-            {% endfor %}
+            {% endif %} {% endfor %}
           </ul>
         </div>
       </div>
@@ -62,7 +64,9 @@
                 />
               </span>
               <span class="new-users-text">
-                <a href="#" class="new-users-name">{{library.full_name}} </a>
+                <a href="{% url 'my_admin:library' %}" class="new-users-name"
+                  >{{library.full_name}}
+                </a>
                 <span class="new-users-info"
                   >Qo'shilgan: {{library.date_added}}
                 </span>
@@ -71,7 +75,11 @@
             {% endfor %}
 
             <span class="new-users-btn">
-              <a href="#" class="btn button-sm outline">Barchasi</a>
+              <a
+                href="{% url 'my_admin:library' %}"
+                class="btn button-sm outline"
+                >Barchasi</a
+              >
             </span>
           </ul>
         </div>
@@ -99,7 +107,9 @@
                 />
               </span>
               <span class="new-users-text">
-                <a href="#" class="new-users-name"
+                <a
+                  href="{% url 'my_admin:organization' %}"
+                  class="new-users-name"
                   >{{organization.full_name}}
                 </a>
                 <span class="new-users-info"
@@ -110,7 +120,11 @@
             {% endfor %}
 
             <span class="new-users-btn">
-              <a href="#" class="btn button-sm outline">Barchasi</a>
+              <a
+                href="{% url 'my_admin:organization' %}"
+                class="btn button-sm outline"
+                >Barchasi</a
+              >
             </span>
           </ul>
         </div>

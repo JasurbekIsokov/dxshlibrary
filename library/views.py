@@ -22,7 +22,6 @@ def profile(request, pk):
         library_id = request.POST.get('library_id')
         organization_id = request.POST.get('organization_id')
         app_file = request.FILES.get('app')
-        print(app_file)
 
         organization = Organization.objects.get(id=organization_id)
         library = Library.objects.get(id=library_id)
