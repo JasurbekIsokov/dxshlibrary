@@ -35,7 +35,7 @@ def get_all_data():
 def home_admin(request):
     # middleware
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('home'))
+        return HttpResponseRedirect(reverse('login'))
     if request.user.is_authenticated:
             if not MyAdmin.objects.filter(user=request.user):
                 return HttpResponseRedirect(reverse('home'))
@@ -45,7 +45,7 @@ def home_admin(request):
 def libraries(request):
     # middleware
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('home'))
+        return HttpResponseRedirect(reverse('login'))
     if request.user.is_authenticated:
             if not MyAdmin.objects.filter(user=request.user):
                 return HttpResponseRedirect(reverse('home'))
@@ -65,7 +65,7 @@ def libraries(request):
 def organizations(request):
     # middleware
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('home'))
+        return HttpResponseRedirect(reverse('login'))
     if request.user.is_authenticated:
             if not MyAdmin.objects.filter(user=request.user):
                 return HttpResponseRedirect(reverse('home'))
@@ -85,7 +85,7 @@ def organizations(request):
 def contracts(request):
     # middleware
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('home'))
+        return HttpResponseRedirect(reverse('login'))
     if request.user.is_authenticated:
             if not MyAdmin.objects.filter(user=request.user):
                 return HttpResponseRedirect(reverse('home'))
@@ -106,7 +106,7 @@ def contracts(request):
 def contacts(request):
     # middleware
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('home'))
+        return HttpResponseRedirect(reverse('login'))
     if request.user.is_authenticated:
             if not MyAdmin.objects.filter(user=request.user):
                 return HttpResponseRedirect(reverse('home'))
@@ -124,7 +124,7 @@ def contacts(request):
 def news(request):
     # middleware
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('home'))
+        return HttpResponseRedirect(reverse('login'))
     if request.user.is_authenticated:
             if not MyAdmin.objects.filter(user=request.user):
                 return HttpResponseRedirect(reverse('home'))
