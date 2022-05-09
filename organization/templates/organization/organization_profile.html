@@ -13,6 +13,7 @@
     </div>
   </div>
   <!-- Breadcrumb row -->
+  {% if not user.myadmin %}
   <div class="breadcrumb-row">
     <div class="container">
       <ul class="list-inline">
@@ -21,6 +22,8 @@
       </ul>
     </div>
   </div>
+  {% endif %}
+
   <!-- Breadcrumb row END -->
   <div class="content-block">
     <div class="section-area section-sp1">
@@ -45,7 +48,7 @@
                             <i class="fa fa-building" aria-hidden="true"></i>
                             <a href="#!">{{organization.full_name}}.</a>
                           </h5>
-                          <p>Ochilgan yili: {{organization.open_year}}</p>
+
                           <p>
                             <i class="fa fa-map-marker" aria-hidden="true"></i>
                             {{organization.region}}
@@ -56,6 +59,11 @@
                             {{organization.phone}}
                           </p>
                           <p>
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            Ochilgan yili: {{organization.open_year}} - yil
+                          </p>
+                          <p>
+                            <i class="fa fa-columns" aria-hidden="true"></i>
                             Ko'rxona turi: {{organization.organization_type}}
                           </p>
                         </div>
@@ -67,7 +75,8 @@
               <div style="margin-bottom: 20px">
                 <div>
                   <h5 class="post-title alert alert-info text-center">
-                    Arizalaringiz
+                    {% if user.myadmin %} Ushbu tashkilot arizalari {% else %}
+                    Arizalaringiz {% endif %}
                   </h5>
                   {% for contract in contracts %}
                   <div class="card mb-3 shadow-sm">

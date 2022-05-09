@@ -30,8 +30,6 @@ def get_all_data():
         "contract_count":contract_count
     }
 
-
-# Create your views here.
 def home_admin(request):
     # middleware
     if not request.user.is_authenticated:

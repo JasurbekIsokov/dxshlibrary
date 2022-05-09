@@ -13,6 +13,7 @@
     </div>
   </div>
   <!-- Breadcrumb row -->
+  {% if not user.is_authenticated and user.myadmin %}
   <div class="breadcrumb-row">
     <div class="container">
       <ul class="list-inline">
@@ -21,6 +22,7 @@
       </ul>
     </div>
   </div>
+  {% endif %}
   <!-- Breadcrumb row END -->
   <div class="content-block">
     <div class="section-area section-sp1">
@@ -49,9 +51,13 @@
                             <i class="fa fa-map-marker" aria-hidden="true"></i>
                             {{library.region}} {{library.full_address}}
                           </p>
+                          <p><i class="fa fa-clock-o" aria-hidden="true"></i> Ochilgan yili: {{library.open_year}} yil</p>
+                          <p><i class="fa fa-money" aria-hidden="true"></i> Umumiy fondi: {{library.general_fund}} so'm</p>
+                          <p><i class="fa fa-users" aria-hidden="true"></i> Foydalanuvchilar soni: {{library.number_of_users}} ta</p>
                           <p class="badge badge-warning" style="color: white">
                             #{{library.partnership_type}}
                           </p>
+                          {% if not user.is_authenticated and user.library or not user.is_authenticated and user.myadmin%}
                           <p>
                             <i class="fa fa-paper-plane" aria-hidden="true"></i>
                             Qo'llab quvvatlash:
@@ -63,6 +69,7 @@
                           <div class="ttr-divider bg-gray">
                             <i class="icon-dot c-square"></i>
                           </div>
+                          {% endif %}
                         </div>
                       </div>
                       <!--Ariza yuborish faqat tashkilot uchun-->
@@ -159,7 +166,7 @@
               </div>
               <div style="margin-bottom: 20px">
                 <!--Kutubxonaga kelgan zarizalar-->
-                {% if user.is_authenticated and user.library %}
+                {% if user.is_authenticated and user.library or user.is_authenticated and user.myadmin%}
                 <div>
                   <h5 class="post-title alert alert-info text-center">
                     Takliflar

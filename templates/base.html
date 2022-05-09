@@ -123,13 +123,23 @@
                         <a href="{% url 'logout' %}">Tizimdan chiqish</a>
                       </div>
                     </div>
-                    {% else %}
+                    {% elif user.organization %}
                     <div class="dropdown">
                       <button onclick="myFunction()" class="dropbtn badge" style="font-size:16px">
                         <i class="fa fa-building" aria-hidden="true"></i> {{user.organization.full_name}}
                       </button>
                       <div id="myDropdown" class="dropdown-content">
                         <a href="{% url 'organization:profile' pk=user.organization.id %}">Shahsiy kabinet</a>
+                        <a href="{% url 'logout' %}">Tizimdan chiqish</a>
+                      </div>
+                    </div>
+                    {% elif user.myadmin %}
+                    <div class="dropdown">
+                      <button onclick="myFunction()" class="dropbtn badge" style="font-size:16px">
+                        <i class="fa fa-building" aria-hidden="true"></i> Admin
+                      </button>
+                      <div id="myDropdown" class="dropdown-content">
+                        <a href="{% url 'my_admin:home'  %}">Admin Panel</a>
                         <a href="{% url 'logout' %}">Tizimdan chiqish</a>
                       </div>
                     </div>
@@ -195,10 +205,10 @@
                 <span id="search-remove"><i class="ti-close"></i></span>
               </div>
               <!-- Navigation Menu ==== -->
+              {% if not  user.myadmin %}
               <div
                 class="menu-links navbar-collapse collapse justify-content-start"
-                id="menuDropdown"
-              >
+                id="menuDropdown">
                 <div class="menu-logo">
                   <a href="index.html"
                     ><img src="assets/images/logo.png" alt=""
@@ -228,12 +238,15 @@
                 </ul>
               </div>
               <!-- Navigation Menu END ==== -->
+              {% endif %}
             </div>
           </div>
         </div>
       </header>
       
       {% block content %}{% endblock content %}
+
+      {% if not user.myadmin %}
       <!-- Footer ==== -->
       <footer>
         <div class="footer-top" style="padding-top: 20px">
@@ -291,9 +304,7 @@
                       <h5 class="footer-title">Havolalar</h5>
                       <ul>
                         <li>
-                          <a href="{% url 'contact' %}"
-                            >Biz bilan bog'lanish</a
-                          >
+                          <a href="{% url 'contact' %}">Biz bilan bog'lanish</a>
                         </li>
                       </ul>
                     </div>
@@ -383,6 +394,7 @@
         </div>
       </footer>
       <!-- Footer END ==== -->
+      {% endif %}
       <!-- scroll top button -->
       <button class="back-to-top fa fa-chevron-up"></button>
     </div>

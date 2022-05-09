@@ -4,17 +4,19 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from .models import Library
 from organization.models import Organization
-from main_app.models import New, Contract
+from main_app.models import MyAdmin, New, Contract
 from django.contrib.auth.models import User
 
 # Create your views here.
 class Libraries(TemplateView):
-    template_name = "library/library_all.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        news = Library.objects.all()
-        context['libraries'] = news
-        return context
+    # for middleware
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            if MyAdmin.objects.filter(user=request.user):
+                return HttpResponseRedirect(reverse('my_admin:home'))
+        
+        libraries = Library.objects.all()
+        return render(request, "library/library_all.html", {"libraries": libraries})
     
 def profile(request, pk):
     if request.method == "POST":
@@ -57,6 +59,11 @@ def profile(request, pk):
     return render(request, 'library/library_profile.html',context) 
 
 def register(request):
+    # for middleware
+    if request.user.is_authenticated:
+        if MyAdmin.objects.filter(user=request.user):
+            return HttpResponseRedirect(reverse('my_admin:home'))
+            
     registered = False
     message = ""
 

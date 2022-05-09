@@ -64,7 +64,9 @@
                 />
               </span>
               <span class="new-users-text">
-                <a href="{% url 'my_admin:library' %}" class="new-users-name"
+                <a
+                  href="{% url 'library:profile' pk=library.id %}"
+                  class="new-users-name"
                   >{{library.full_name}}
                 </a>
                 <span class="new-users-info"
@@ -108,7 +110,7 @@
               </span>
               <span class="new-users-text">
                 <a
-                  href="{% url 'my_admin:organization' %}"
+                  href="{% url 'organization:profile' pk=organization.id %}"
                   class="new-users-name"
                   >{{organization.full_name}}
                 </a>

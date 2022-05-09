@@ -40,30 +40,38 @@
                 </p>
               </div>
               <div class="col-md-12">
-                <form method="post">
-                  {% csrf_token %}
-                  <input
-                    name="id"
-                    value="{{library.id}}"
-                    type="text"
-                    style="display: none"
-                  />
-                  {% if library.is_active %}
+                <div class="row">
+                  <a
+                    href="{% url 'library:profile' pk=library.id %}"
+                    class="btn blue outline radius-xl"
+                    style="margin-right: 10px"
+                    >Batafsil
+                  </a>
+                  <form method="post">
+                    {% csrf_token %}
+                    <input
+                      name="id"
+                      value="{{library.id}}"
+                      type="text"
+                      style="display: none"
+                    />
+                    {% if library.is_active %}
 
-                  <input
-                    class="btn red outline radius-xl"
-                    value="Faolsizlashtirish"
-                    type="submit"
-                  />
-                  {% else %}
+                    <input
+                      class="btn red outline radius-xl"
+                      value="Faolsizlashtirish"
+                      type="submit"
+                    />
+                    {% else %}
 
-                  <input
-                    class="btn green outline radius-xl"
-                    value="Faollashtirish"
-                    type="submit"
-                  />
-                  {% endif %}
-                </form>
+                    <input
+                      class="btn green outline radius-xl"
+                      value="Faollashtirish"
+                      type="submit"
+                    />
+                    {% endif %}
+                  </form>
+                </div>
               </div>
             </div>
           </div>

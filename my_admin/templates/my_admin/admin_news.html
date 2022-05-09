@@ -24,16 +24,28 @@
                     <i class="fa fa-calendar"></i> {{new.date_added}}
                   </h6>
                   <p>{{new.body}}</p>
-                  <form method="post">
-                    {% csrf_token %}
-                    <input value="{{new.id}}" name="id" style="display: none" />
-                    <input
-                      class="btn red outline radius-xl"
-                      value="O'chirish"
-                      name="value"
-                      type="submit"
-                    />
-                  </form>
+                  <div class="row">
+                    <a
+                      href="{% url 'simple_new' pk=new.id %}"
+                      class="btn blue outline radius-xl"
+                      style="margin-right: 10px"
+                      >Batafsil
+                    </a>
+                    <form method="post">
+                      {% csrf_token %}
+                      <input
+                        value="{{new.id}}"
+                        name="id"
+                        style="display: none"
+                      />
+                      <input
+                        class="btn red outline radius-xl"
+                        value="O'chirish"
+                        name="value"
+                        type="submit"
+                      />
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>

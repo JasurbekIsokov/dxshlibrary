@@ -1,5 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from library.models import *
+from organization.models import *
 from django.http import  HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render
@@ -26,6 +28,8 @@ class HomeView(TemplateView):
 
     
 def user_login(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('home'))
     message = ''
     if request.method == "POST":
         username = request.POST.get('username')
@@ -35,6 +39,17 @@ def user_login(request):
 
         if user:
             if user.is_active:
+                library = Library.objects.filter(user = user)               
+                organization = Organization.objects.filter(user = user)
+
+                if library and not library[0].is_active:
+                    message = 'Foydalanuvchi faolsizlantirilgan'
+                    return render(request, 'main_app/login.html', {'message': message})
+                
+                if organization and not organization[0].is_active:
+                    message = 'Foydalanuvchi faolsizlantirilgan'
+                    return render(request, 'main_app/login.html', {'message': message})
+
                 login(request, user)
                 if MyAdmin.objects.filter(user = user):
                     return HttpResponseRedirect(reverse('my_admin:home'))
@@ -57,12 +72,13 @@ def user_logout(request):
 
 
 class NewsView(TemplateView):
-    template_name = "main_app/news.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    # for middleware
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            if MyAdmin.objects.filter(user=request.user):
+                return HttpResponseRedirect(reverse('my_admin:home'))
         news = New.objects.all()
-        context['news'] = news
-        return context
+        return render(request, "main_app/news.html", {"news": news})
 
 
 class DetailNew(DetailView):
@@ -72,6 +88,11 @@ class DetailNew(DetailView):
 
 
 def contact(request):
+    # for middleware
+    if request.user.is_authenticated:
+        if MyAdmin.objects.filter(user=request.user):
+            return HttpResponseRedirect(reverse('my_admin:home'))
+
     message = ''
     if request.method == "POST":
         name = request.POST.get('name')

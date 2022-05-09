@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.models import User
 from .models import Organization
-from main_app.models import New, Contract
+from main_app.models import MyAdmin, New, Contract
 from library.models import Library
 
 # Create your views here.
@@ -24,6 +24,11 @@ def profile_organization(request, pk=None):
 
 
 def register(request):
+    # for middleware
+    if request.user.is_authenticated:
+        if MyAdmin.objects.filter(user=request.user):
+            return HttpResponseRedirect(reverse('my_admin:home'))
+            
     registered = False
     message = ""
 
@@ -69,5 +74,3 @@ def register(request):
                             {'registered':registered,})
     
 
-def profile(request):
-    return HttpResponse("<h1>Organization profile</h1>")
