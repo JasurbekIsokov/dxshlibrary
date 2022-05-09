@@ -3,7 +3,7 @@
   <!-- inner page banner -->
   <div
     class="page-banner ovbl-dark"
-    style="background-image: url('{% static 'images/banner/banner2.jpg'%}')"
+    style="background-image: url('{% static 'images/banner/back1.jpg'%}')"
   >
     <div class="container">
       <div class="page-banner-entry">
@@ -166,7 +166,7 @@
               </div>
               <div style="margin-bottom: 20px">
                 <!--Kutubxonaga kelgan zarizalar-->
-                {% if user.is_authenticated and user.library or user.is_authenticated and user.myadmin%}
+                {% if user.is_authenticated and user.library.id == library.id or user.is_authenticated and user.myadmin%}
                 <div>
                   <h5 class="post-title alert alert-info text-center">
                     Takliflar
