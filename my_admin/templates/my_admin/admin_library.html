@@ -9,11 +9,14 @@
         {% for library in libraries %}
         <div class="card-courses-list admin-courses">
           <div class="card-courses-media">
+            {% if library.library_pic %}
             <img
               src="{{library.library_pic.url}}"
               alt=""
               style="height: 100%; width: 100%; object-fit: cover"
             />
+            {% else %} <img src={% static 'images/lib.jpg' %} alt=""
+            style="height: 100%; width: 100%; object-fit: cover" /> {% endif %}
           </div>
           <div class="card-courses-full-dec">
             <div class="card-courses-title">

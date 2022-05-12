@@ -55,7 +55,10 @@
         <div class="new-user-list">
           <ul>
             {% for library in libraries %}
+            <li>{% for library in libraries %}</li>
+
             <li>
+              {% if library.library_pic %}
               <span class="new-users-pic">
                 <img
                   src="{{library.library_pic.url}}"
@@ -63,6 +66,13 @@
                   style="height: 100%; width: 100%; object-fit: cover"
                 />
               </span>
+
+              {% else %}
+              <span class="new-users-pic">
+                <img src={% static 'images/lib.jpg' %} alt="" style="height:
+                100%; width: 100%; object-fit: cover" />
+              </span>
+              {% endif %}
               <span class="new-users-text">
                 <a
                   href="{% url 'library:profile' pk=library.id %}"
