@@ -25,58 +25,106 @@
     <!-- Blog Grid ==== -->
     <div class="section-area section-sp1">
       <div class="container">
-        <div class="ttr-blog-grid-3 row" id="masonry">
-          {% for library in libraries %}
-          <div
-            class="post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40"
-          >
-            <div class="recent-news">
-              {% if library.library_pic %}
-              <div class="action-box">
-                <img
-                  src="{{library.library_pic.url}}"
-                  alt=""
-                  style="height: 250px; object-fit: cover"
-                />
-              </div>
-              {% endif %}
-
-              <div class="info-bx">
-                <div style="height: 260px; overflow-y: scroll">
-                  <h5 class="post-title">
-                    <i class="fa fa-book" aria-hidden="true"></i>
-                    <a href="blog-details.html">{{library.full_name}}</a>
-                  </h5>
-                  <p>
-                    <span style="color: blue"
-                      ><i class="fa fa-map-marker" aria-hidden="true"></i>
-                      {{library.region}}</span
-                    >.<br />{{library.full_address}}
-                  </p>
-                  <p class="badge badge-warning" style="color: white">
-                    #{{library.partnership_type}}
-                  </p>
-                  <p>
-                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Qo'llab
-                    quvvatlash:
-                  </p>
-                  <p style="font-size: 20px">
-                    <a href="#!" class="badge badge-success">Hamkorlik</a>
-                    <a href="#!" class="badge badge-success">Be'garaz yordam</a>
-                    <a href="#!" class="badge badge-success">Homiylik</a>
-                  </p>
-                </div>
-
-                <div class="post-extra">
-                  <a
-                    href="{% url 'library:profile' pk=library.id %}"
-                    class="btn"
-                    >Ko'proq ko'rish</a
+        <form class="contact-bx">
+          <div class="row placeani">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <div class="input-group">
+                  <label style="text-align: center"
+                    ><i class="fa fa-search"></i> Qidirish uchun bu yerga yozing
+                    (Viloyat nomi yoki tuman, ko'cha, shahar nomlarini
+                    yozing)...</label
                   >
+                  <input
+                    name="fullname"
+                    type="text"
+                    required=""
+                    style="text-align: center"
+                    id="myInput"
+                    onkeyup="myFilter()"
+                    class="form-control"
+                  />
                 </div>
               </div>
             </div>
           </div>
+        </form>
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 100%;
+          "
+        >
+          <div
+            class="alert alert-warning my-alert"
+            style="display: none; width: 100%"
+          >
+            Ma'lumotlar topilmadi!
+          </div>
+          {% for library in libraries %}
+          <div class="myClass">
+            <div
+              class="post action-card"
+              style="width: 370px; margin: 0 10px 20px 0"
+            >
+              <div class="recent-news">
+                {% if library.library_pic %}
+                <div class="action-box">
+                  <img
+                    src="{{library.library_pic.url}}"
+                    alt=""
+                    style="height: 250px; object-fit: cover"
+                  />
+                </div>
+                {% endif %}
+
+                <div class="info-bx">
+                  <div style="height: 260px; overflow-y: scroll">
+                    <h5 class="post-title">
+                      <i class="fa fa-book" aria-hidden="true"></i>
+                      <a href="blog-details.html" class="fname"
+                        >{{library.full_name}}</a
+                      >
+                    </h5>
+                    <p>
+                      <span style="color: blue"
+                        ><i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <span class="region">{{library.region}}</span></span
+                      >.<br /><span class="full_address"
+                        >{{library.full_address}}</span
+                      >
+                    </p>
+                    <p class="badge badge-warning" style="color: white">
+                      #{{library.partnership_type}}
+                    </p>
+                    <p>
+                      <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                      Qo'llab quvvatlash:
+                    </p>
+                    <p style="font-size: 20px">
+                      <a href="#!" class="badge badge-success">Hamkorlik</a>
+                      <a href="#!" class="badge badge-success"
+                        >Be'garaz yordam</a
+                      >
+                      <a href="#!" class="badge badge-success">Homiylik</a>
+                    </p>
+                  </div>
+
+                  <div class="post-extra">
+                    <a
+                      href="{% url 'library:profile' pk=library.id %}"
+                      class="btn"
+                      >Ko'proq ko'rish</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {% endfor %}
         </div>
       </div>
@@ -85,4 +133,5 @@
   </div>
   <!-- Page Content Box END ==== -->
 </div>
+
 {% endblock content %}

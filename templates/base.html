@@ -418,6 +418,34 @@
           }
         }
       };
+        function myFilter() {
+          let myInput = document.getElementById("myInput");
+          let libraries = document.querySelectorAll(".myClass");
+          let infoAlert = document.querySelector(".my-alert")
+          let filter = myInput.value.toUpperCase();
+          let count = 0;
+          for (let i = 0; i < libraries.length; i++) {
+            let a = libraries[i].getElementsByTagName("a")[0];
+            let region = libraries[i].querySelector('.region');
+            let address = libraries[i].querySelector('.full_address');
+
+            txtValue = a.textContent || a.innerText;
+            txtValue += region.innerHTML || region.innerText;
+            txtValue += address.textContent || address.innerText;
+            console.log(txtValue);
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              count ++;
+              libraries[i].style.display = "flex";
+            } else {
+              libraries[i].style.display = "none";
+            }
+          }
+          if (count === 0) {
+            infoAlert.style.display="block"
+          } else {
+            infoAlert.style.display="none"
+          }
+        }
     </script>
     <!-- External JavaScripts -->
     <script src={% static 'js/jquery.min.js' %}></script>
