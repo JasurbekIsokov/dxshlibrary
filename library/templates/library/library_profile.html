@@ -34,11 +34,20 @@
             <div class="recent-news blog-lg">
               <div class="action-box blog-lg">
                 <div class="card mb-3 shadow-sm">
+                  {% if library.library_pic %}
                   <img
                     src="{{library.library_pic.url}}"
                     class="card-img-top"
                     alt="..."
                   />
+                  {% else %}
+                  <img
+                  src={% static 'images/lib.jpg' %}
+                  class="card-img-top"
+                  alt="..."
+                />
+                  {% endif %}
+                  
                   <div class="card-body">
                     <div class="row p-2" style="margin-bottom: 20px">
                       <div class="col-lg-6">
