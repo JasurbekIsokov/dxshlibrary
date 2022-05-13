@@ -9,11 +9,14 @@
         {% for organization in organizations %}
         <div class="card-courses-list admin-courses">
           <div class="card-courses-media">
+            {% if organization.organization_pic %}
             <img
               src="{{organization.organization_pic.url}}"
               alt=""
               style="height: 100%; width: 100%; object-fit: cover"
             />
+            {% else %} <img src={% static 'images/org.webp' %} alt=""
+            style="height: 100%; width: 100%; object-fit: cover" /> {% endif %}
           </div>
           <div class="card-courses-full-dec">
             <div class="card-courses-title">

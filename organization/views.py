@@ -28,6 +28,7 @@ def register(request):
     if request.user.is_authenticated:
         if MyAdmin.objects.filter(user=request.user):
             return HttpResponseRedirect(reverse('my_admin:home'))
+        return HttpResponseRedirect(reverse('home'))
             
     registered = False
     message = ""
@@ -57,6 +58,17 @@ def register(request):
             message = "Foydalanuvchi nomi band"
             return render(request, 'organization/organization_register.html',
                             {'registered':registered, 'message':message})
+        
+        elif Organization.objects.filter(full_name=fullname).exists():
+            message = "Bu tashkilot allaqachon mavjud"
+            return render(request, 'organization/organization_register.html',
+                            {'registered':registered, 'message':message})
+        
+        elif Organization.objects.filter(full_address=fullAddress).exists():
+            message = "Bu hudud allaqachon mavjud"
+            return render(request, 'organization/organization_register.html',
+                            {'registered':registered, 'message':message})
+        
         else:
             user = User.objects.create_user(username, 'lennon@thebeatles.com', password1)
             organization = Organization.objects.create(user=user, 
@@ -71,6 +83,6 @@ def register(request):
             return HttpResponseRedirect(reverse('login'))
 
     return render(request, 'organization/organization_register.html',
-                            {'registered':registered,})
+                            {'registered':registered, "message":message})
     
 

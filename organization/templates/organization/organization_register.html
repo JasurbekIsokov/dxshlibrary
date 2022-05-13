@@ -118,11 +118,14 @@
             background-image: url('{% static 'images/banner/back1.jpg' %}');
             transform: scaleX(1.5);
           "
-        ></div>
+        >
+      </div>
         <div class="account-form-inner">
           <div class="account-container">
-            <span>{{message}}</span>
             <div class="heading-bx left">
+              {% if message %}
+                  <div class="alert alert-danger">{{message}}</div>
+              {% endif %}
               <h2 class="title-head">Ro'yhatdan o'tish</h2>
               <p>
                 Menda akkount bor <a href="{% url 'login' %}"> Akkountga kirish</a>
@@ -198,7 +201,8 @@
                   <div class="form-group">
                     <div class="input-group">
                       <span class="custom-dropdown big">
-                        <select name="region">
+                        <select name="region" required>
+                          <option selected="true" disabled="disabled">Viloyatingizni tanlang:</option>
                           <option value="Andijon">Andijon viloyati</option>
                           <option value="Buxoro">Buxoro viloyati</option>
                           <option value="Farg'ona">Farg'ona viloyati</option>
@@ -274,18 +278,16 @@
                 <div class="col-lg-12">
                   <div class="form-group">
                     <div class="input-group">
-                      <label>Rasm yuklash(agar bo'lsa)</label>
+                      <p style="color:green">Rasm yuklash(agar bo'lsa) <i class="fa fa-arrow-down" aria-hidden="true"></i></p>
                       <input
                         name="organization_pic"
                         type="file"
                         accept="image/*"
                         class="form-control"
-                        required=""
                       />
                     </div>
                   </div>
                 </div>
-
                 <div class="col-lg-12 m-b30">
                   <button
                     name="submit"

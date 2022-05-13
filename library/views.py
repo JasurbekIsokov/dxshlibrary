@@ -63,6 +63,7 @@ def register(request):
     if request.user.is_authenticated:
         if MyAdmin.objects.filter(user=request.user):
             return HttpResponseRedirect(reverse('my_admin:home'))
+        return HttpResponseRedirect(reverse('home'))
             
     registered = False
     message = ""
@@ -88,9 +89,25 @@ def register(request):
             message = "Parol 6 ta belgidan kam bo'lmasin"
             return render(request, 'library/library_register.html',
                             {'registered':registered, 'message':message})
-
+        elif region==None:
+            message = "Viloyatingizni tanlang"
+            return render(request, 'library/library_register.html',
+                            {'registered':registered, 'message':message})
+        elif partnership_type==None:
+            message = "Muammolardan birini tanlang"
+            return render(request, 'library/library_register.html',
+                            {'registered':registered, 'message':message})
         elif User.objects.filter(username=username).exists():
             message = "Foydalanuvchi nomi band"
+            return render(request, 'library/library_register.html',
+                            {'registered':registered, 'message':message})
+        elif Library.objects.filter(full_name=fullname).exists():
+            message = "Bu kutubxona ro'yhatga olingan"
+            return render(request, 'library/library_register.html',
+                            {'registered':registered, 'message':message})
+        
+        elif Library.objects.filter(full_address=fullAddress).exists():
+            message = "Bu hudud ro'yhatga olingan"
             return render(request, 'library/library_register.html',
                             {'registered':registered, 'message':message})
         else:
@@ -108,5 +125,5 @@ def register(request):
             return HttpResponseRedirect(reverse('login'))
 
     return render(request, 'library/library_register.html',
-                            {'registered':registered,})
+                            {'registered':registered, "message":message})
     

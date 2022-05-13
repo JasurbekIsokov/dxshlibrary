@@ -35,11 +35,15 @@
             <div class="recent-news blog-lg">
               <div class="action-box blog-lg">
                 <div class="card mb-3 shadow-sm">
+                  {% if organization.organization_pic %}
                   <img
                     src="{{organization.organization_pic.url}}"
                     class="card-img-top"
                     alt="..."
                   />
+                  {% else %} <img src={% static 'images/org.webp' %}
+                  class="card-img-top" alt="..." /> {% endif %}
+
                   <div class="card-body">
                     <div class="row p-2" style="margin-bottom: 20px">
                       <div class="col-lg-6">
